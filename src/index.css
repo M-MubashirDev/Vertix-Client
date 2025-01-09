@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* For WebKit-based browsers (Chrome, Safari) */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    @apply bg-transparent text-white;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* For Firefox */
+  input:-moz-autofill,
+  input:-moz-autofill:hover,
+  input:-moz-autofill:focus,
+  input:-moz-autofill:active {
+    @apply bg-transparent text-white;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -moz-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.custom-shape-divider-bottom-1736427827 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
