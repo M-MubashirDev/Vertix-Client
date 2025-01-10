@@ -1,4 +1,6 @@
+import { GoPaperAirplane } from "react-icons/go";
 import Form from "../Hooks/Form";
+import { HiOutlinePaperAirplane } from "react-icons/hi";
 
 const Contact = () => {
   const handleSubmit = (data) => {
@@ -18,43 +20,49 @@ const Contact = () => {
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[800px] mx-auto py-16 px-6 text-white">
-        <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
-        <p className="text-lg mb-8">
-          Have questions or need support? Please fill out the form below, and
-          we&apos;ll get back to you as soon as possible.
-        </p>
+      <div className="max-w-[1440px] w-[90%] mx-auto ">
+        <div className="relative z-10 lg:max-w-[60%]  flex flex-col text-center md:text-start justify-start  py-16 px-6 text-white">
+          <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
+          <p className="text-lg mb-8">
+            Have questions or need support? Please fill out the form below, and
+            we&apos;ll get back to you as soon as possible.
+          </p>
 
-        {/* Form */}
-        <Form onSubmit={handleSubmit}>
-          <Form.Input
-            label="Your Name"
-            name="name"
-            validation={{
-              required: "Name is required",
-            }}
-          />
-          <Form.Input
-            label="Email Address"
-            name="email"
-            type="email"
-            validation={{
-              required: "Email is required",
-              pattern: {
-                value: /^[^@]+@[^@]+\.[^@]+$/,
-                message: "Invalid email address",
-              },
-            }}
-          />
-          <Form.TextArea
-            label="Your Message"
-            name="message"
-            validation={{
-              required: "Message is required",
-            }}
-          />
-          <Form.ButtonSubmit>Send Message</Form.ButtonSubmit>
-        </Form>
+          {/* Form */}
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              label="Your Name"
+              name="name"
+              validation={{
+                required: "Name is required",
+              }}
+            />
+            <Form.Input
+              label="Email Address"
+              name="email"
+              type="email"
+              validation={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[^@]+@[^@]+\.[^@]+$/,
+                  message: "Invalid email address",
+                },
+              }}
+            />
+            <Form.TextArea
+              label="Your Message"
+              name="message"
+              validation={{
+                required: "Message is required",
+              }}
+            />
+            <Form.ButtonSubmit>
+              <span className="flex items-center   justify-center gap-3">
+                Send Message <HiOutlinePaperAirplane />
+              </span>
+            </Form.ButtonSubmit>
+          </Form>
+        </div>
       </div>
     </div>
   );
