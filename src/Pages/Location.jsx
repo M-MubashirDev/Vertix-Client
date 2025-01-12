@@ -1,17 +1,9 @@
-import FooterDetails from "../Components/Footer/FooterDetails";
-import CarWashComponent from "../Components/Location/PostCode";
-import Carousel from "../UI/Carousel";
+import { Outlet } from "react-router-dom";
 
 export default function Location() {
   return (
-    <section className="bg-background ">
-      <CarWashComponent />
-      <div className="my-12 ">
-        <Carousel />
-      </div>
-      <section className="">
-        <FooterDetails />
-      </section>
-    </section>
+    <div>
+      <Outlet />
+    </div>
   );
 }

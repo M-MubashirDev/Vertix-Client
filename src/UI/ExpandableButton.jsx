@@ -53,7 +53,7 @@ const ExpandableButton = ({
 
   return (
     <button
-      className="flex items-center justify-start border-none rounded-full cursor-pointer relative overflow-hidden transition-all duration-300 shadow-[2px_2px_10px_rgba(0,0,0,0.199)] bg-primary-dark group"
+      className="flex items-center justify-start border-none hover:pl-3 rounded-full cursor-pointer relative overflow-hidden transition-all duration-300 shadow-[2px_2px_10px_rgba(0,0,0,0.199)] bg-primary-dark group"
       style={{
         width: isHovered ? hoverW : w,
         height: h,

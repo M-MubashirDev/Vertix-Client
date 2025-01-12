@@ -1,6 +1,5 @@
 import { IoIosSearch } from "react-icons/io";
 import BackButton from "../../UI/BackButton";
-import Carousel from "../../UI/Carousel";
 import ExpandableButton from "../../UI/ExpandableButton";
 
 export default function CarWashComponent() {
