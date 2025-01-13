@@ -1,5 +1,5 @@
 import FooterDetails from "../Components/Footer/FooterDetails";
-import CarWashComponent from "../Components/Location/PostCode";
+import CarWashComponent from "../Location/PostCode";
 import Carousel from "../UI/Carousel";
 function LocationPoster() {
   return (

@@ -389,7 +389,7 @@ function TextArea({ label, name, validation, rows = 4, ...rest }) {
         rows={rows}
         {...register(name, validation)}
         placeholder=""
-        className={`w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-dark focus:outline-none ${
+        className={`w-full px-4 py-2 border  bg-transparent border-gray-300 rounded-md focus:ring-2 focus:ring-primary-dark focus:outline-none ${
           errors[name] ? "border-red-500" : "border-gray-300"
         }`}
         {...rest}

@@ -1,6 +1,8 @@
-import React from "react";
-import Map from "../Components/Location/Map";
-import StationCardSec from "../Components/Location/StationCardSec";
+// import UseStations from "../Location/hook/UseStations";
+import UseStations from "../Location/hook/UseStations";
+import Map from "../Location/Map";
+import StationCardSec from "../Location/StationCardSec";
+import Spinner from "../UI/Spinner";
 
 function Stations() {
   const stations = [
@@ -14,10 +16,16 @@ function Stations() {
       address: "4595 Parkview Drive, Sacramento, CA 83209",
     },
   ];
-
+  const { stationsData, pendingStations } = UseStations();
+  console.log(stationsData);
+  if (pendingStations) return <Spinner />;
+  // console.log(stationsData);
   return (
-    <div className="flex flex-col lg:flex-row    max-w-[1440px] mx-auto w-[99%] min-h-screen">
-      <div className="lg:flex-1 max-w-[1440px]  w-[90%] mx-auto flex flex-col items-center text-center  py-10 relative">
+    <div
+      style={{ maxHeight: "calc(100vh - 83.2px)" }}
+      className="flex flex-col lg:flex-row    max-w-[1440px] mx-auto w-[99%] "
+    >
+      <div className="lg:flex-1 max-w-[1440px]  w-[90%] mx-auto flex flex-col pl-4  py-10 relative">
         {/* Background Image with Overlay */}
         <div
           style={{
@@ -35,7 +43,7 @@ function Stations() {
           }}
         />
         <div
-          className="min-w-full w-full"
+          className="min-w-full min-h-full h-full flex flex-col w-full"
           style={{ position: "relative", zIndex: 1 }}
         >
           {" "}
@@ -47,17 +55,18 @@ function Stations() {
           <h1 className="lg:text-5xl md:text-4xl  text-3xl font-bold text-primary-dark mb-4">
             Car Washing and Care Points
           </h1>
-          <div>
-            <StationCardSec points={stations} />
-          </div>
-          <img
-            src="/vaccume2.png"
-            alt="Car Wash Equipment"
-            className="max-w-[50%]   justify-self-start mb-6"
-          />
+          <StationCardSec points={stations} stationsData={stationsData} />
+          {/* <img
+            src="/s.png"
+            alt="Car"
+            className="max-w-[30%] opacity-30 mt-auto"
+          /> */}
         </div>
       </div>
-      <div className="lg:flex-1 lg:max-w-[30%]   lg:min-h-full">
+      <div
+        style={{ maxHeight: "calc(100vh - 83.2px)" }}
+        className="lg:flex-1 lg:max-w-[30%]   lg:min-h-full"
+      >
         <Map />
       </div>
     </div>

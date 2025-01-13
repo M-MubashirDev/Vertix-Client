@@ -1,10 +1,13 @@
-import { GoPaperAirplane } from "react-icons/go";
-import Form from "../Hooks/Form";
+// import { GoPaperAirplane } from "react-icons/go";
+import { useContectus } from "../Contectus/useContect";
+import Form from "../Components/Form";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 
 const Contact = () => {
-  const handleSubmit = (data) => {
+  const { postContect, postPending } = useContectus();
+  const HandleSubmit = (data) => {
     console.log("Form Data Submitted:", data);
+    postContect({ data });
   };
 
   return (
@@ -29,7 +32,7 @@ const Contact = () => {
           </p>
 
           {/* Form */}
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={HandleSubmit}>
             <Form.Input
               label="Your Name"
               name="name"

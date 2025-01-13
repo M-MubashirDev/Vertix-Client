@@ -8,11 +8,6 @@ export default {
           DEFAULT: "#263E4D", // Primary dark blue
           dark: "#1A2834", // Deep navy blue
         },
-        secondary: {
-          light: "#7B5E57", // Soft chocolate brown
-          DEFAULT: "#4B3832", // Dark chocolate brown
-          dark: "#32221E", // Deep brown
-        },
         neutral: {
           light: "#D9D9D9", // Soft light gray
           DEFAULT: "#8D8D8D", // Neutral medium gray
@@ -25,6 +20,15 @@ export default {
         },
         white: "#FFFFFF", // Pure white
         background: "#F5F5F5", // Light background for contrast
+      },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
     },
   },

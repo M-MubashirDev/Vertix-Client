@@ -100,7 +100,7 @@ const Navbar = () => {
             {/* Expandable Button */}
           </ul>
           <button
-            className="md:hidden text-white hover:text-secondary-light"
+            className="md:hidden text-black hover:text-secondary-light"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             ☰

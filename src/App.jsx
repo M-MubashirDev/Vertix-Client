@@ -6,36 +6,54 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LocationPoster from "./Pages/LocationPoster";
 import Stations from "./Pages/Stations";
 import Services from "./Pages/Services";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProtectedRoute from "./Login/ProtectedRoute";
+import PageNotFound from "./Pages/PageNotFound";
+import Login from "./Pages/Login";
+const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          {/* Base Layout */}
-          <Route path="/" element={<Layout />}>
-            {/* Home Page */}
-            <Route index element={<Home />} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            {/* Base Layout */}
+            <Route path="login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Layout />
+                </ProtectedRoute>
+              }
+            >
+              {/* Home Page */}
+              <Route index element={<Home />} />
 
-            {/* Contact Us Page */}
-            <Route path="contactus" element={<Contect />} />
+              {/* Contact Us Page */}
+              <Route path="contectus" element={<Contect />} />
 
-            {/* Location Page */}
-            <Route path="location" element={<Location />}>
-              {/* Poster Selection */}
-              <Route index element={<LocationPoster />} />
+              {/* Location Page */}
+              <Route path="location" element={<Location />}>
+                {/* Poster Selection */}
+                <Route index element={<LocationPoster />} />
 
-              {/* Select Stations */}
-              <Route path="stations" element={<Stations />} />
+                {/* Select Stations */}
+                <Route path="stations" element={<Stations />} />
 
-              {/* Select Services */}
-              <Route
-                path="stations/:stationId/services"
-                element={<Services />}
-              />
+                {/* Select Services */}
+                <Route
+                  path="stations/:stationId/services"
+                  element={<Services />}
+                />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </>
   );
 }
