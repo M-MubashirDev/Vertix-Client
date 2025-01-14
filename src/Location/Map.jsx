@@ -1,4 +1,3 @@
-import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -39,8 +38,8 @@ const Map = () => {
         />
 
         {/* Add Markers */}
-        {markers.map((marker) => (
-          <Marker key={marker.id} position={marker.position} icon={customIcon}>
+        {markers.map((marker, index) => (
+          <Marker key={index} position={marker.position} icon={customIcon}>
             <Popup>{marker.label}</Popup>
           </Marker>
         ))}

@@ -1,10 +1,24 @@
-import { IoIosSearch } from "react-icons/io";
 import BackButton from "../UI/BackButton";
-import ExpandableButton from "../UI/ExpandableButton";
+import LocationSearch from "./SearchBarsuggestion";
+import { ButtonNavArrow } from "../UI/ButtonNav";
+import { useState } from "react";
 
 export default function CarWashComponent() {
+  const [currentLocation, setCurrentLocation] = useState("");
+  const handleSuggestionSelect = (suggestion) => {
+    if (!suggestion) return;
+    setCurrentLocation(suggestion);
+    localStorage.setItem("currentLocation", suggestion);
+    console.log(suggestion);
+    console.log("Selected Location:");
+    console.log(`Location: ${suggestion.location}`);
+    console.log(`Coordinates: ${suggestion.coordinates}`);
+    console.log(`Country: ${suggestion.country}`);
+    // You can handle map centering or other logic here
+  };
+
   return (
-    <div className="bg-background  p-4">
+    <div className="bg-background p-4">
       <div className="ml-24 mt-6">
         <BackButton />
       </div>
@@ -20,26 +34,28 @@ export default function CarWashComponent() {
         </p>
 
         {/* Input and Button */}
-        <div className="mt-6 flex items-center gap-4">
-          <input
-            type="text"
-            placeholder="Enter ZIP Code"
-            className="px-4 py-2 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-light"
-          />
-          {/* <button className="px-6 py-2 bg-primary-light text-white text-lg rounded-full hover:bg-primary-dark hover:text-background transition-all">
-            Find a Car Wash
-            </button> */}
-          <ExpandableButton
-            text="Car Wash"
+        <div className="mt-6 flex items-start gap-2 w-full max-w-lg relative">
+          <LocationSearch onSuggestionSelect={handleSuggestionSelect} />
+          {/* <ExpandableButton
+            text="Stations"
             w="50px"
             h="50px"
             hoverH="135px"
             icon={<IoIosSearch color="white" />}
-          />
+            className="absolute right-[-60px] top-0"
+          /> */}
+          <ButtonNavArrow
+            disable={!currentLocation}
+            to={`stations/${currentLocation.location}`}
+          >
+            Go Station
+          </ButtonNavArrow>
         </div>
-        <img src="locationRemoved.png" alt="" />
-
-        {/* Carousel */}
+        <img
+          src="/locationRemoved.png"
+          alt="Location Graphic"
+          className="mt-6 w-3/4 max-w-lg"
+        />
       </div>
     </div>
   );

@@ -79,7 +79,7 @@ const Navbar = () => {
     localStorage.removeItem("authToken");
   }
   return (
-    <nav className="bg-white bg-opacity-70    shadow-lg  text-white p-4   ">
+    <nav className="bg-white bg-opacity-70    shadow-lg  text-white py-2   ">
       <div className="w-[90%] max-w-[1440px] mx-auto">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold">

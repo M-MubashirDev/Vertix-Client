@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProtectedRoute from "./Login/ProtectedRoute";
 import PageNotFound from "./Pages/PageNotFound";
 import Login from "./Pages/Login";
+import Payment from "./Pages/Payment";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -40,12 +41,16 @@ function App() {
                 <Route index element={<LocationPoster />} />
 
                 {/* Select Stations */}
-                <Route path="stations" element={<Stations />} />
+                <Route path="stations/:stationId" element={<Stations />} />
 
                 {/* Select Services */}
                 <Route
                   path="stations/:stationId/services"
                   element={<Services />}
+                />
+                <Route
+                  path="stations/:stationId/services/payment"
+                  element={<Payment />}
                 />
               </Route>
               <Route path="*" element={<PageNotFound />} />

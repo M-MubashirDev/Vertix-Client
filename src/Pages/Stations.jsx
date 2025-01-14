@@ -1,25 +1,22 @@
 // import UseStations from "../Location/hook/UseStations";
+import { useNavigate, useParams } from "react-router-dom";
 import UseStations from "../Location/hook/UseStations";
 import Map from "../Location/Map";
 import StationCardSec from "../Location/StationCardSec";
 import Spinner from "../UI/Spinner";
 
 function Stations() {
-  const stations = [
-    {
-      type: "Car Washing Point",
-      address: "1353 Locust St, Kansas City, MO 64106",
-    },
-    { type: "Service Point", address: "754 Adams Avenue, Waldorf, MD 20601" },
-    {
-      type: "Auto Care Point",
-      address: "4595 Parkview Drive, Sacramento, CA 83209",
-    },
-  ];
+  const navigate = useNavigate();
+  const { stationId } = useParams();
+  const currentLocation = localStorage.getItem("currentLocation");
+
+  //fetchig stations
   const { stationsData, pendingStations } = UseStations();
   console.log(stationsData);
+  if (!currentLocation && currentLocation?.location === stationId)
+    navigate("*");
   if (pendingStations) return <Spinner />;
-  // console.log(stationsData);
+
   return (
     <div
       style={{ maxHeight: "calc(100vh - 83.2px)" }}
@@ -48,14 +45,18 @@ function Stations() {
         >
           {" "}
           {/* Ensure content is above the background */}
-          <h2 className="lg:text-3xl md:text-2xl text-xl   text-primary tracking-widest mb-6">
+          <h2 className="lg:text-3xl md:text-2xl text-xl   text-primary tracking-widest mb-1">
             <span className="tracking-normal">&#8212;&#8211;</span>
             &nbsp;&nbsp;LOCATION
           </h2>
           <h1 className="lg:text-5xl md:text-4xl  text-3xl font-bold text-primary-dark mb-4">
             Car Washing and Care Points
           </h1>
-          <StationCardSec points={stations} stationsData={stationsData} />
+          {stationsData ? (
+            <StationCardSec stationsData={stationsData} />
+          ) : (
+            <h1>Not Found Any Station in this City</h1>
+          )}
           {/* <img
             src="/s.png"
             alt="Car"

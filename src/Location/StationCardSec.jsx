@@ -4,7 +4,7 @@ function StationCardSec({ title, points, stationsData }) {
       {stationsData?.map((point, index) => (
         <div
           key={point._id}
-          className=" cursor-pointer flex gap-4 items-center filter drop-shadow-md rounded-lg p-4"
+          className=" cursor-pointer text-center md:text-start flex flex-col sm:flex-row gap-4 items-center filter drop-shadow-md rounded-lg p-4"
         >
           <img
             src={point.image ? point.image : "/stationNots.webp"}
