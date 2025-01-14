@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export async function getServices({ url, data }) {
+export async function getServices({ url }) {
   try {
-    const response = await axios.get(`http://localhost:5000/api/${url}`, data);
+    const response = await axios.get(`http://localhost:5000/api/${url}`);
 
     return response.data;
   } catch (err) {

@@ -41,15 +41,15 @@ function App() {
                 <Route index element={<LocationPoster />} />
 
                 {/* Select Stations */}
-                <Route path="stations/:stationId" element={<Stations />} />
+                <Route path="stations/:cityName" element={<Stations />} />
 
                 {/* Select Services */}
                 <Route
-                  path="stations/:stationId/services"
+                  path="stations/:cityName/:serviceId/services"
                   element={<Services />}
                 />
                 <Route
-                  path="stations/:stationId/services/payment"
+                  path="stations/:cityName/services/payment"
                   element={<Payment />}
                 />
               </Route>

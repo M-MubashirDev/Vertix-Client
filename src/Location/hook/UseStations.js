@@ -3,7 +3,7 @@ import { getStations } from "../../Services/Stations";
 import { useParams } from "react-router-dom";
 
 function UseStations() {
-  const { stationId } = useParams();
+  const { cityName } = useParams();
   const {
     data: stationsData,
     isPending: pendingStations,
@@ -12,7 +12,7 @@ function UseStations() {
     queryKey: ["Stations"],
     queryFn: () =>
       getStations({
-        url: `get-service-stations-by-location/${stationId}`,
+        url: `get-service-stations-by-location/${cityName}`,
       }),
   });
   return { stationsData, pendingStations, error };

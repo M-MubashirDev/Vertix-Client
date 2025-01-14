@@ -8,7 +8,7 @@ export default function CarWashComponent() {
   const handleSuggestionSelect = (suggestion) => {
     if (!suggestion) return;
     setCurrentLocation(suggestion);
-    localStorage.setItem("currentLocation", suggestion);
+    sessionStorage.setItem("currentLocation", suggestion);
     console.log(suggestion);
     console.log("Selected Location:");
     console.log(`Location: ${suggestion.location}`);

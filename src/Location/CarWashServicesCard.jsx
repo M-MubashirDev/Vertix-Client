@@ -47,7 +47,7 @@ const CarWashServicesCard = ({ service }) => {
           <div className="mt-4 flex items-center justify-center gap-2">
             <FaShieldAlt className="h-4 w-4 text-slate-400" />
             <span className="text-xs font-medium text-slate-400">
-              30-day money-back guarantee
+              Your satisfaction is our promise.
             </span>
           </div>
         </div>

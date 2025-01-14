@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import CarWashServicesCard from "../Location/CarWashServicesCard";
 import useServices from "../Location/hook/UserServices";
 import BackButton, { ForwardButton } from "../UI/BackButton";
 import FullPageSpinner from "../UI/Spinner";
 function Services() {
   const { servicesData, pendingServices } = useServices();
-  console.log(servicesData);
 
   if (pendingServices) return <FullPageSpinner />;
   return (
