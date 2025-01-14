@@ -45,7 +45,7 @@ function App() {
 
                 {/* Select Services */}
                 <Route
-                  path="stations/:cityName/:serviceId/services"
+                  path="stations/:cityName/:stationId/services"
                   element={<Services />}
                 />
                 <Route

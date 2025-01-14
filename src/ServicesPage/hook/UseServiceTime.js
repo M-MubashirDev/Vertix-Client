@@ -1,24 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { getServices } from "../../Services/Services";
 import { useParams } from "react-router-dom";
-function useServices() {
+
+function UserServiceTime() {
   // http://localhost:5000/api/get-packages-by-station/67861f2b7f7caef48ef3d35b
 
   const { stationId } = useParams();
   const {
-    data: servicesData,
-    isPending: pendingServices,
+    data: timeData,
+    isPending: pendingTime,
     error,
   } = useQuery({
-    queryKey: ["Services"],
+    queryKey: ["time"],
     // queryFn: () => getServices({ url: `get-packages-by-station/${stationId}` }),
     queryFn: () =>
       getServices({
-        url: `get-packages-by-station/67861f2b7f7caef48ef3d35b
+        url: `get-appointments-by-station/67861f2b7f7caef48ef3d35b
 `,
       }),
   });
-  return { servicesData, pendingServices, error };
+  return { timeData, pendingTime, error };
 }
-
-export default useServices;
+export default UserServiceTime;
