@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 
 function Layout() {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div>
       {pathname !== "/" ? (

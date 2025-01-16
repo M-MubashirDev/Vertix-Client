@@ -349,7 +349,7 @@ const CalendarComp = ({
           </div>
 
           {/* Dates of the Month */}
-          <div className="grid grid-cols-7 gap-4">
+          <div className="grid  grid-cols-7 gap-4">
             {calendarDays.map((day, index) => {
               if (day === null) {
                 // filler for offset

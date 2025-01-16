@@ -29,13 +29,16 @@ function Services() {
               is it.&quot;
             </p>
           </div>
-          {servicesData?.map((service) => (
-            <CarWashServicesCard key={service._id} service={service} />
-          ))}
+          {servicesData && servicesData.length > 0 ? (
+            servicesData.map((service) => (
+              <CarWashServicesCard key={service._id} service={service} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500">
+              There are no packages available.
+            </p>
+          )}
         </div>
-      </div>
-      <div>
-        <Time />
       </div>
     </section>
   );

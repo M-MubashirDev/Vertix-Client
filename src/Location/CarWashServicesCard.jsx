@@ -1,8 +1,15 @@
 import { FaCheckCircle } from "react-icons/fa"; // Reserved for future use
 import { FaArrowRight } from "react-icons/fa"; // Importing an arrow icon
 import { FaShieldAlt } from "react-icons/fa"; // Importing a shield icon
+import { useNavigate } from "react-router-dom";
 
 const CarWashServicesCard = ({ service }) => {
+  const navigate = useNavigate();
+  function Click() {
+    if (!service) return;
+    navigate(`${service._id}/cardetails`);
+  }
+  console.log(service);
   return (
     <div key={service._id} className="group h-[60vh]  relative w-80">
       <div className="relative h-[60vh]  overflow-hidden rounded-2xl bg-gradient-to-b from-slate-950 to-slate-900 p-[1px] shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan-500/25 ">
@@ -34,7 +41,10 @@ const CarWashServicesCard = ({ service }) => {
           </div>
 
           <div className="relative   mt-auto">
-            <button className="group/btn relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-white to-primary-light p-px font-semibold text-white shadow-[0_1000px_0_0_hsl(0_0%_100%_/_0%)_inset] transition-colors hover:shadow-[0_1000px_0_0_hsl(0_0%_100%_/_2%)_inset]">
+            <button
+              onClick={() => Click()}
+              className="group/btn relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-white to-primary-light p-px font-semibold text-white shadow-[0_1000px_0_0_hsl(0_0%_100%_/_0%)_inset] transition-colors hover:shadow-[0_1000px_0_0_hsl(0_0%_100%_/_2%)_inset]"
+            >
               <div className="relative rounded-xl bg-slate-950/50 px-4 py-3 transition-colors group-hover/btn:bg-transparent">
                 <span className="relative flex items-center justify-center gap-2">
                   Get Started

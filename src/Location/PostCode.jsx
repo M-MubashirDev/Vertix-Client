@@ -9,12 +9,6 @@ export default function CarWashComponent() {
     if (!suggestion) return;
     setCurrentLocation(suggestion);
     sessionStorage.setItem("currentLocation", suggestion);
-    console.log(suggestion);
-    console.log("Selected Location:");
-    console.log(`Location: ${suggestion.location}`);
-    console.log(`Coordinates: ${suggestion.coordinates}`);
-    console.log(`Country: ${suggestion.country}`);
-    // You can handle map centering or other logic here
   };
 
   return (

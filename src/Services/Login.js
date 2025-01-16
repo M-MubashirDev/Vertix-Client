@@ -7,7 +7,7 @@ const Login = async ({ email, password }) => {
       password,
     });
     const { token } = response.data;
-    console.log(response);
+    response;
     localStorage.setItem("authToken", token);
     return { success: true, token };
   } catch (error) {

@@ -8,7 +8,7 @@ export async function Contectus({ data }) {
     );
     return response;
   } catch (error) {
-    console.error("Error fetching professional data:", error.message);
+    console.error("Error fetching  data:", error.message);
     throw error;
   }
 }

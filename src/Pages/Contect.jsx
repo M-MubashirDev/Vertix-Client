@@ -6,7 +6,6 @@ import { HiOutlinePaperAirplane } from "react-icons/hi";
 const Contact = () => {
   const { postContect, postPending } = useContectus();
   const HandleSubmit = (data) => {
-    console.log("Form Data Submitted:", data);
     postContect({ data });
   };
 

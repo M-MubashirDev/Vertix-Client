@@ -15,7 +15,7 @@ function useServices() {
     queryFn: () =>
       getServices({
         url: `get-packages-by-station/67861f2b7f7caef48ef3d35b
-`,
+    `,
       }),
   });
   return { servicesData, pendingServices, error };

@@ -12,6 +12,7 @@ import ProtectedRoute from "./Login/ProtectedRoute";
 import PageNotFound from "./Pages/PageNotFound";
 import Login from "./Pages/Login";
 import Payment from "./Pages/Payment";
+import CarDetails from "./Pages/CarDetails";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
                 <Route
                   path="stations/:cityName/:stationId/services"
                   element={<Services />}
+                />
+                <Route
+                  path="stations/:cityName/:stationId/services/:packageId/cardetails"
+                  element={<CarDetails />}
                 />
                 <Route
                   path="stations/:cityName/services/payment"

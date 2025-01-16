@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import CalendarComp from "./Calendar";
 import UserServiceTime from "./hook/UseServiceTime";
+import UseShopTiming from "";
 
 /**
  * Transform `timeData` into an array of blocked slots.
@@ -23,7 +24,8 @@ function buildBlockedSlotsFromTimeData(timeData) {
 
 function Time() {
   const { timeData, pendingTime } = UserServiceTime(); // Fetch service time data
-
+  const { shopTimingData, pendingShopTiming } = UseShopTiming();
+  console.log(shopTimingData);
   // State management for Calendar
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -54,20 +56,21 @@ function Time() {
   }
 
   return (
-    <section className="flex flex-col lg:flex-row justify-between py-6 gap-6 mx-auto w-full px-4">
+    <section className="flex flex-col lg:flex-row justify-center py-6 gap-6 mx-auto w-full px-4">
       {/* Left Section: Calendar and Slots */}
       <div className="flex flex-col w-full lg:w-2/3">
-        <h1 className="text-4xl font-bold text-primary-dark text-center lg:text-left mb-6">
+        <h1 className="text-4xl font-bold text-primary-dark text-center  mb-6">
           Choose Date & Time
         </h1>
-
-        <CalendarComp
-          timeSlots={blockedSlots} // Pass combined blocked slots
-          select={{ selectedDay, setSelectedDay }}
-          available={{ availableTimeSlots, setAvailableTimeSlots }}
-          shopTime={{ shopStart: "09:00", shopEnd: "18:00" }} // Default shop timing
-          lastSlot={60} // Default service duration
-        />
+        <div className="max-w-full">
+          <CalendarComp
+            timeSlots={blockedSlots} // Pass combined blocked slots
+            select={{ selectedDay, setSelectedDay }}
+            available={{ availableTimeSlots, setAvailableTimeSlots }}
+            shopTime={{ shopStart: "09:00", shopEnd: "18:00" }} // Default shop timing
+            lastSlot={60} // Default service duration
+          />
+        </div>
 
         {/* TIME SLOTS FOR THE SELECTED DAY */}
         {selectedDay && (
