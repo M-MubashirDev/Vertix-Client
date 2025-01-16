@@ -12,8 +12,13 @@ function useShopTiming() {
   } = useQuery({
     queryKey: ["shopTime", stationId], // Use stationId as part of query key for better caching
     queryFn: () =>
-      getShopTiming({ url: `get-all-station-timings/${stationId}` }),
+      getShopTiming({
+        url: `get-all-station-timings/6780f5b9045a1bd712807aad`,
+      }),
   });
+  //   queryFn: () =>
+  //     getShopTiming({ url: `get-all-station-timings/${stationId}` }),
+  // });
 
   return { shopTimingData, pendingShopTiming, error };
 }

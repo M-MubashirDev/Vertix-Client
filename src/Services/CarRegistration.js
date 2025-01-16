@@ -22,6 +22,9 @@ export async function postCarRegister({ data }) {
 export async function getShopTiming({ url }) {
   try {
     const response = await axios.get(`http://localhost:5000/api/${url}`);
+    // const response = await axios.get(
+    //   `http://localhost:5000/api/get-all-station-timings/6780f5b9045a1bd712807aad`
+    // );
 
     return response.data;
   } catch (err) {

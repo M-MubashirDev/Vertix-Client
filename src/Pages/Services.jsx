@@ -1,6 +1,5 @@
 import CarWashServicesCard from "../Location/CarWashServicesCard";
 import useServices from "../Location/hook/UserServices";
-import Time from "../ServicesPage/Time";
 import BackButton, { ForwardButton } from "../UI/BackButton";
 import FullPageSpinner from "../UI/Spinner";
 function Services() {

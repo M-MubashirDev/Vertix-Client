@@ -1,7 +1,8 @@
+// import useShopTiming from "./hook/UserShopTIming";
 import { useState, useMemo, useEffect } from "react";
 import CalendarComp from "./Calendar";
 import UserServiceTime from "./hook/UseServiceTime";
-import UseShopTiming from "";
+import useShopTiming from "./hook/UserShopTIming";
 
 /**
  * Transform `timeData` into an array of blocked slots.
@@ -24,7 +25,7 @@ function buildBlockedSlotsFromTimeData(timeData) {
 
 function Time() {
   const { timeData, pendingTime } = UserServiceTime(); // Fetch service time data
-  const { shopTimingData, pendingShopTiming } = UseShopTiming();
+  const { shopTimingData, pendingShopTiming } = useShopTiming();
   console.log(shopTimingData);
   // State management for Calendar
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
