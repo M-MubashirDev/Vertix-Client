@@ -1,12 +1,11 @@
 import CarRegistrationForm from "../CarRegistrationAndTime.jsx/CarRegistrationForm";
-import useShopTiming from "../ServicesPage/hook/UserShopTIming";
-import Time from "../ServicesPage/Time";
+import { Time } from "../ServicesPage/Time";
 import BackButton, { ForwardButton } from "../UI/BackButton";
 
 function CarDetails() {
   return (
     <div className="max-w-[1440px] mx-auto w-[90%] flex flex-col">
-      <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col">
         {/* Heading and Back/Forward Buttons */}
         <div className="relative pt-8">
           <div className="absolute left-12 top-8">
@@ -23,7 +22,7 @@ function CarDetails() {
               Enter Your Vehicle Information
             </h1>
             <p className="font-semibold tracking-wider text-xl mb-8">
-              "Every detail matters, your car’s story begins here."
+              &quot;Every detail matters, your car’s story begins here.&quot;
             </p>
           </div>
         </div>
@@ -35,7 +34,7 @@ function CarDetails() {
 
         {/* Calendar */}
       </div>
-      <div className="">
+      <div className=" ">
         <Time />
       </div>
     </div>
@@ -88,3 +87,6 @@ export default CarDetails;
 // }
 
 // export default CarDetails;
+// const { timeData, pendingTime } = UserServiceTime(); // Fetch service time data
+//   const { shopTimingData, pendingShopTiming } = useShopTiming();
+//   console.log(shopTimingData);

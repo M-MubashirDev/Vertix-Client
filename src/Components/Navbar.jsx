@@ -78,6 +78,9 @@ const Navbar = () => {
   function logout() {
     localStorage.removeItem("authToken");
   }
+  // function func() {
+  //   localStorage.removeItem("authToken");
+  // }
   return (
     <nav className="bg-white bg-opacity-70    shadow-lg  text-white py-2   ">
       <div className="w-[90%] max-w-[1440px] mx-auto">
@@ -93,8 +96,10 @@ const Navbar = () => {
           </div>
           <ul className="hidden md:flex space-x-8 items-center">
             <LinkNav to={"/"}>Home</LinkNav>
-            <LinkNav to={"/"}>About us </LinkNav>
             <LinkNav to={"/contectus"}>contect us</LinkNav>
+            <LinkNav to={"/login"} func={logout}>
+              Log out{" "}
+            </LinkNav>
             <ButtonNavArrow to="location">Get Plan</ButtonNavArrow>
 
             {/* Expandable Button */}

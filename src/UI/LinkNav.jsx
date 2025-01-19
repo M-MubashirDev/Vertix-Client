@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
-function LinkNav({ to, children }) {
+function LinkNav({ to, children, func }) {
   return (
-    <li>
+    <li
+      onClick={() => {
+        func ? func() : "";
+      }}
+    >
       <Link
         to={to}
         className="flex items-center space-x-2 hover:text-neutral-light transition duration-200"

@@ -1,61 +1,49 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import CalendarComp from "./Calendar";
+import useShopTiming from "./hook/UserShopTiming";
 import UserServiceTime from "./hook/UseServiceTime";
-import useShopTiming from "./hook/UserShopTIming";
 
-/**
- * Transform `shopTimingData` into blocked slots.
- * @param {Object} shopTimingData - The shop timing data with day and time ranges.
- * @returns {Array} - Array of blocked slots.
- */
-function buildBlockedSlotsFromShopTimingData(shopTimingData) {
-  const timings = shopTimingData?.stationTimings || [];
-  return timings.map(({ day, time }) => {
-    const [startTime, endTime] = time.split("-");
-    return {
-      date: day,
-      startTime,
-      endTime,
-    };
-  });
-}
-
-/**
- * Transform `timeData` (appointments) into blocked slots.
- * @param {Object} timeData - The reserved slots data.
- * @returns {Array} - Array of blocked slots.
- */
-function buildBlockedSlotsFromTimeData(timeData) {
+function buildBlockedSlots(shopTimingData, timeData) {
+  const shopTimings = shopTimingData?.stationTimings || [];
   const appointments = timeData?.appointments || [];
-  return appointments.map(({ date, startTime, endTime }) => ({
-    date: new Date(date).toISOString().split("T")[0],
-    startTime,
-    endTime,
-  }));
+
+  const shopBlockedSlots = shopTimings.map(({ day, time }) => {
+    const [startTime, endTime] = time.split("-");
+    return { day, startTime, endTime };
+  });
+
+  const appointmentBlockedSlots = appointments.map(
+    ({ date, startTime, endTime }) => {
+      return {
+        date: new Date(date).toISOString().split("T")[0],
+        startTime,
+        endTime,
+      };
+    }
+  );
+
+  return { shopBlockedSlots, appointmentBlockedSlots };
 }
 
 function Time() {
   const { shopTimingData, pendingShopTiming } = useShopTiming();
   const { timeData, pendingTime } = UserServiceTime();
-  const [selectedDay, setSelectedDay] = useState(null);
+
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+  const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
-  // Combine blocked slots from shop timings and appointments
-  const blockedSlots = useMemo(() => {
-    const shopBlockedSlots =
-      buildBlockedSlotsFromShopTimingData(shopTimingData);
-    const reservedSlots = buildBlockedSlotsFromTimeData(timeData);
-    return [...shopBlockedSlots, ...reservedSlots];
-  }, [shopTimingData, timeData]);
+  const { shopBlockedSlots, appointmentBlockedSlots } = useMemo(
+    () => buildBlockedSlots(shopTimingData, timeData),
+    [shopTimingData, timeData]
+  );
 
-  // Handle time slot selection
-  const handleSelectTimeSlot = (idx) => {
+  function handleSelectTimeSlot({ idx, slot }) {
     setSelectedTimeSlot(idx);
-  };
+    console.log("Selected Slot:", slot);
+  }
 
-  // Show a loading state if data is still fetching
-  if (pendingTime || pendingShopTiming) {
+  if (pendingShopTiming || pendingTime) {
     return <p>Loading...</p>;
   }
 
@@ -65,15 +53,12 @@ function Time() {
         <h1 className="text-4xl font-bold text-primary-dark text-center mb-6">
           Choose Date & Time
         </h1>
-        <div className="w-full ">
-          <CalendarComp
-            timeSlots={blockedSlots}
-            select={{ selectedDay, setSelectedDay }}
-            available={{ availableTimeSlots, setAvailableTimeSlots }}
-            shopTime={{ shopStart: "09:00", shopEnd: "18:00" }}
-            lastSlot={60}
-          />
-        </div>
+        <CalendarComp
+          shopBlockedSlots={shopBlockedSlots}
+          appointmentBlockedSlots={appointmentBlockedSlots}
+          select={{ selectedDay, setSelectedDay }}
+          available={{ availableTimeSlots, setAvailableTimeSlots }}
+        />
         {selectedDay && (
           <div className="mt-6">
             <h3 className="text-2xl font-bold text-primary-dark mb-4">
@@ -107,4 +92,4 @@ function Time() {
   );
 }
 
-export { Time };
+export default Time;

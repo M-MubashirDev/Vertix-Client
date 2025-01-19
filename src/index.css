@@ -3,35 +3,26 @@
 @tailwind utilities;
 
 @layer base {
-  /* For WebKit-based browsers (Chrome, Safari) */
+  /* Autofill styles for WebKit-based browsers (Chrome, Safari) */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    @apply bg-transparent text-white;
-    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-    box-shadow: 0 0 0 1000px transparent inset !important;
-    -webkit-text-fill-color: white !important;
-    transition: background-color 5000s ease-in-out 0s;
+    @apply bg-gray-100 text-gray-800; /* Adjust to match your theme */
+    -webkit-box-shadow: 0 0 0 1000px #f3f4f6 inset !important; /* Match input background */
+    box-shadow: 0 0 0 1000px #f3f4f6 inset !important; /* Match input background */
+    -webkit-text-fill-color: #374151 !important; /* Match input text color */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent flashing */
   }
 
-  /* For Firefox */
+  /* Autofill styles for Firefox */
   input:-moz-autofill,
   input:-moz-autofill:hover,
   input:-moz-autofill:focus,
   input:-moz-autofill:active {
-    @apply bg-transparent text-white;
-    box-shadow: 0 0 0 1000px transparent inset !important;
-    -moz-text-fill-color: white !important;
-    transition: background-color 5000s ease-in-out 0s;
+    @apply bg-gray-100 text-gray-800; /* Adjust to match your theme */
+    box-shadow: 0 0 0 1000px #f3f4f6 inset !important; /* Match input background */
+    -moz-text-fill-color: #374151 !important; /* Match input text color */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent flashing */
   }
-}
-
-.custom-shape-divider-bottom-1736427827 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
 }
