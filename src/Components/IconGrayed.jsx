@@ -80,7 +80,7 @@ const FeaturesSection = () => {
             />
           ))}
         </div>
-        <div className="w-full flex justify-end ">
+        <div className="w-full flex justify-end sm:opacity-100 opacity-0">
           <ExpandableButton
             icon={<RiCarWashingFill color="white" />}
             text="lets wash"

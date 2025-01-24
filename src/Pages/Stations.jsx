@@ -4,18 +4,21 @@ import Map from "../Location/Map";
 import StationCardSec from "../Location/StationCardSec";
 import Spinner from "../UI/Spinner";
 import BackButton from "../UI/BackButton";
+import { useEffect } from "react";
 
 function Stations() {
   const navigate = useNavigate();
   const { cityName } = useParams();
-  const currentLocation = localStorage.getItem("currentLocation");
+  const currentLocation = JSON.parse(sessionStorage.getItem("currentLocation"));
 
   // Fetching stations
   const { stationsData, pendingStations } = UseStations();
-
+  console.log(cityName, currentLocation);
   // Navigate to 404 if no location or invalid cityName
-  if (!currentLocation && currentLocation?.location === cityName) navigate("*");
-
+  useEffect(() => {
+    if (!currentLocation || currentLocation?.location !== cityName)
+      navigate("*");
+  }, [currentLocation, navigate, cityName]);
   // Show spinner while loading
   if (pendingStations) return <Spinner />;
 
@@ -43,10 +46,10 @@ function Stations() {
           }}
         />
         <div
-          className="min-w-full min-h-full h-full flex flex-col w-full"
+          className="min-w-full min-h-full h-full flex text-center sm:text-start flex-col w-full"
           style={{ position: "relative", zIndex: 1 }}
         >
-          <h2 className="lg:text-3xl md:text-2xl text-xl text-primary tracking-widest mb-1">
+          <h2 className="lg:text-3xl md:text-2xl text-xl  text-primary tracking-widest mb-1">
             <span className="tracking-normal">&#8212;&#8211;</span>
             &nbsp;&nbsp;LOCATION
           </h2>
@@ -70,9 +73,9 @@ function Stations() {
       {/* Right Section: Map */}
       <div
         style={{ maxHeight: "calc(100vh - 83.2px)" }}
-        className="lg:flex-1 lg:max-w-[30%] lg:min-h-full"
+        className="lg:flex-1 lg:max-w-[30%] lg:min-h-full mt-auto"
       >
-        <Map />
+        <Map stationsData={stationsData} />
       </div>
     </div>
   );

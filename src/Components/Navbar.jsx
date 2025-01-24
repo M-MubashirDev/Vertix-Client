@@ -2,127 +2,173 @@
 // import { FaUserPlus } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 
+// import { ButtonNavArrow } from "../UI/ButtonNav";
+// import LinkNav from "../UI/LinkNav";
+
 // const Navbar = () => {
 //   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+//   // Ref for the entire navbar
+
+//   // Navigation links data
+//   const navLinks = [
+//     { label: "Home", to: "/" },
+//     { label: "Contact Us", to: "/contectus" },
+//     {
+//       label: "Log out",
+//       to: "/login",
+//       func: () => localStorage.removeItem("authToken"),
+//     },
+//   ];
+
+//   // GSAP Animation for the entire navbar
+
 //   return (
-//     <nav className="bg-primary-dark text-white p-4 max-w-[1440px] mx-auto rounded-b-md w-[90%]">
-//       <div className="container mx-auto flex justify-between items-center">
-//         <div className="text-2xl font-bold">
-//           <Link to="/" className="text-secondary-light">
-//             LOGO
-//           </Link>
-//         </div>
-//         <ul className="hidden md:flex space-x-8 items-center">
-//           {/* Add "Create New Admin" link */}
-//           <li>
-//             <Link
-//               to="/admin"
-//               className="flex items-center space-x-2 hover:text-neutral-light transition duration-200"
-//             >
-//               <FaUserPlus />
-//               <span>Create New Admin</span>
+//     <nav className="bg-white bg-opacity-70 shadow-lg text-white py-2">
+//       <div className="w-[90%] max-w-[1440px] mx-auto">
+//         <div className="container mx-auto flex justify-between items-center">
+//           {/* Logo */}
+//           <div className="text-2xl font-bold">
+//             <Link to="/" className="text-secondary-light">
+//               <img
+//                 src="logo2.png"
+//                 alt="logo"
+//                 className="md:max-w-40 sm:max-w-30 max-w-24"
+//               />
 //             </Link>
-//           </li>
-//           <button className="flex items-center justify-start w-[45px] h-[45px] border-none rounded-full cursor-pointer relative overflow-hidden transition duration-300 shadow-[2px_2px_10px_rgba(0,0,0,0.199)] bg-primary hover:w-[125px] hover:rounded-[40px] active:translate-x-[2px] active:translate-y-[2px]">
-//             <div className="sign flex items-center justify-center w-full transition duration-300 hover:w-[30%] pl-5">
-//               <svg className="w-[17px]" viewBox="0 0 24 24">
-//                 <path
-//                   d="M12 10v4m2-2h-4"
-//                   stroke="white"
-//                   strokeWidth="2"
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                 />
-//               </svg>
-//             </div>
-//             <span className="text absolute right-0 w-0 opacity-0 text-white text-[1.2em] font-semibold transition duration-300 hover:opacity-100 hover:w-[70%] pr-[10px]">
-//               Text
-//             </span>
+//           </div>
+//           {/* Nav Links */}
+//           <ul className="hidden md:flex space-x-8 items-center">
+//             {navLinks.map((link, index) => (
+//               <LinkNav
+//                 key={index}
+//                 to={link.to}
+//                 sent="text-primary-dark font-semibold"
+//                 func={link.func}
+//               >
+//                 {link.label}
+//               </LinkNav>
+//             ))}
+//             <ButtonNavArrow to="location">Get Plan</ButtonNavArrow>
+//           </ul>
+//           {/* Mobile Menu Button */}
+//           <button
+//             className="md:hidden text-black hover:text-secondary-light"
+//             onClick={() => setIsMenuOpen(!isMenuOpen)}
+//           >
+//             ☰
 //           </button>
-//         </ul>
-//         <button
-//           className="md:hidden text-white hover:text-secondary-light"
-//           onClick={() => setIsMenuOpen(!isMenuOpen)}
-//         >
-//           ☰
-//         </button>
+//         </div>
+//         {/* Mobile Menu */}
+//         {isMenuOpen && (
+//           <ul className="md:hidden min-h-screen flex flex-col items-center gap-6 text-white p-4 space-y-2">
+//             {navLinks.map((link, index) => (
+//               <LinkNav
+//                 key={index}
+//                 to={link.to}
+//                 sent="text-primary-dark font-semibold"
+//                 func={link.func}
+//               >
+//                 {link.label}
+//               </LinkNav>
+//             ))}
+//             <ButtonNavArrow to="location">Get Plan</ButtonNavArrow>
+//           </ul>
+//         )}
 //       </div>
-//       {isMenuOpen && (
-//         <ul className="md:hidden bg-primary-dark text-white p-4 space-y-2">
-//           {/* Add "Create New Admin" link for mobile */}
-//           <li>
-//             <Link
-//               to="admin"
-//               className="flex items-center space-x-2 hover:text-primary-light transition duration-200"
-//             >
-//               <FaUserPlus />
-//               <span>Create New Admin</span>
-//             </Link>
-//           </li>
-//         </ul>
-//       )}
 //     </nav>
 //   );
 // };
 
 // export default Navbar;
 import { useState } from "react";
-import { FaUserPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import LinkNav from "../UI/LinkNav";
+import { FaTimes } from "react-icons/fa"; // Cross icon
+import { Link, useLocation } from "react-router-dom";
+
 import { ButtonNavArrow } from "../UI/ButtonNav";
+import LinkNav from "../UI/LinkNav";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  function logout() {
-    localStorage.removeItem("authToken");
-  }
-  // function func() {
-  //   localStorage.removeItem("authToken");
-  // }
+  const location = useLocation();
+
+  // Navigation links data
+  const navLinks = [
+    { label: "Home", to: "/" },
+    { label: "Contact Us", to: "/contectus" },
+    {
+      label: "Log out",
+      to: "/login",
+      func: () => localStorage.removeItem("authToken"),
+    },
+  ];
+
+  // Function to close the menu
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav className="bg-white bg-opacity-70    shadow-lg  text-white py-2   ">
+    <nav className="bg-white bg-opacity-70 shadow-lg text-white py-2">
       <div className="w-[90%] max-w-[1440px] mx-auto">
         <div className="container mx-auto flex justify-between items-center">
+          {/* Logo */}
           <div className="text-2xl font-bold">
-            <Link to="/" className="text-secondary-light ">
+            <Link to="/" className="text-secondary-light">
               <img
                 src="logo2.png"
                 alt="logo"
-                className="md:max-w-40 sm:max-w-30 max-w-24 "
+                className="md:max-w-40 sm:max-w-30 max-w-24"
               />
             </Link>
           </div>
-          <ul className="hidden md:flex space-x-8 items-center">
-            <LinkNav to={"/"}>Home</LinkNav>
-            <LinkNav to={"/contectus"}>contect us</LinkNav>
-            <LinkNav to={"/login"} func={logout}>
-              Log out{" "}
-            </LinkNav>
-            <ButtonNavArrow to="location">Get Plan</ButtonNavArrow>
 
-            {/* Expandable Button */}
+          {/* Nav Links (Desktop) */}
+          <ul className="hidden md:flex space-x-8 items-center">
+            {navLinks.map((link, index) => (
+              <LinkNav
+                key={index}
+                to={link.to}
+                sent="text-primary-dark font-semibold"
+                func={link.func}
+              >
+                {link.label}
+              </LinkNav>
+            ))}
+            <ButtonNavArrow to="location">Get Plan</ButtonNavArrow>
           </ul>
+
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-black hover:text-secondary-light"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
           >
-            ☰
+            {isMenuOpen ? <FaTimes size={24} /> : "☰"}
           </button>
         </div>
+
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <ul className="md:hidden bg-primary-dark text-white p-4 space-y-2">
-            {/* Add "Create New Admin" link for mobile */}
-            <li>
-              <Link
-                to="admin"
-                className="flex items-center space-x-2 hover:text-primary-light transition duration-200"
+          <ul className="md:hidden min-h-screen flex flex-col items-center gap-6 text-white p-4  bg-opacity-90">
+            {navLinks.map((link, index) => (
+              <LinkNav
+                key={index}
+                to={link.to}
+                sent={`text-primary-dark font-semibold ${
+                  location.pathname === link.to ? "text-secondary-light" : ""
+                }`}
+                func={() => {
+                  if (link.func) link.func(); // Execute the link-specific function
+                  handleCloseMenu();
+                }}
               >
-                <FaUserPlus />
-                <span>Create New Admin</span>
-              </Link>
-            </li>
+                {link.label}
+              </LinkNav>
+            ))}
+            <ButtonNavArrow to="location" func={handleCloseMenu}>
+              Get Plan
+            </ButtonNavArrow>
           </ul>
         )}
       </div>

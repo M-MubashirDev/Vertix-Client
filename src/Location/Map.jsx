@@ -3,9 +3,6 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 // Fix for Leaflet's default marker icon paths
-import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
-import iconUrl from "leaflet/dist/images/marker-icon.png";
-import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 const customIcon = L.icon({
   iconUrl: "/markedremoved.png",
@@ -14,13 +11,14 @@ const customIcon = L.icon({
   popupAnchor: [0, -40],
 });
 
-const Map = () => {
-  const defaultPosition = [33.495895, 73.105629]; // Default center (London)
+const Map = ({ stationsData }) => {
+  const currentLocation = JSON.parse(sessionStorage.getItem("currentLocation"));
+  console.log("😊😊", currentLocation);
+  const [lat, lng] = currentLocation.coordinates;
+  const defaultPosition = [lng, lat]; // Default center (London)
+  // const defaultPosition = currentLocation.coordinates || [33.495895, 73.105629]; // Default center (London)
   const markers = [
-    { id: 1, position: [33.495895, 73.105629], label: "Marker 1: behriya" },
-    { id: 1, position: [51.505, -0.09], label: "Marker 1: London" },
-    { id: 2, position: [48.8566, 2.3522], label: "Marker 2: Paris" },
-    { id: 3, position: [40.7128, -74.006], label: "Marker 3: New York" },
+    { id: 1, position: [lng, lat], label: currentLocation.location },
   ];
 
   return (
@@ -38,11 +36,12 @@ const Map = () => {
         />
 
         {/* Add Markers */}
-        {markers.map((marker, index) => (
-          <Marker key={index} position={marker.position} icon={customIcon}>
-            <Popup>{marker.label}</Popup>
-          </Marker>
-        ))}
+        {stationsData &&
+          markers.map((marker, index) => (
+            <Marker key={index} position={marker.position} icon={customIcon}>
+              <Popup>{marker.label}</Popup>
+            </Marker>
+          ))}
       </MapContainer>
     </div>
   );

@@ -5,16 +5,19 @@ function ButtonNav({ children }) {
   const navigate = useNavigate();
 
   return (
-    /* From Uiverse.io by EcheverriaJesus */
     <button
       onClick={() => navigate("/")}
-      className="flex gap-3 z-40 cursor-pointer text-white font-semibold bg-gradient-to-r from-gray-800 to-black px-7 py-3 rounded-full border border-gray-600 hover:scale-105 duration-200 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900"
+      className="flex items-center gap-2 sm:gap-3 md:gap-4 z-50 cursor-pointer text-white bg-gradient-to-r from-gray-800 to-black px-5 sm:px-7 md:px-10 py-3 sm:py-4 font-bold rounded-full border border-gray-600 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 text-sm sm:text-base md:text-lg transition-all duration-300"
     >
       {children}
-      <IoArrowForward size={24} className="text-white" />
+      <IoArrowForward
+        size={20} // Default size
+        className="text-white sm:text-gray-300"
+      />
     </button>
   );
 }
+
 export function ButtonNavArrow({ children, to, disable }) {
   const navigate = useNavigate();
 

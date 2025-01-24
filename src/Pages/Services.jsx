@@ -10,10 +10,10 @@ function Services() {
     <section className=" max-w-[1440px] mx-auto w-[90%]">
       <div className="min-h-screen  ">
         <div className="relative pt-8   flex flex-col items-center">
-          <div className="   absolute left-12 top-8 ">
+          <div className="   absolute left-12 top-8 md:opacity-100 opacity-0 ">
             <BackButton />
           </div>
-          <div className="   absolute right-12 top-8 ">
+          <div className="   md:absolute mt-3 mb-4 right-12 top-8 ">
             <ForwardButton />
           </div>
           <div className="flex flex-col items-center">
@@ -23,7 +23,7 @@ function Services() {
             <h1 className="lg:text-4xl md:text-3xl  text-2xl mb-4  font-bold text-primary-dark">
               Choose Your Plan
             </h1>
-            <p className="font-semibold tracking-wider   text-xl mb-8">
+            <p className="font-semibold tracking-wider text-center   text-xl mb-8">
               &quot;Care that dazzles, plans that fit, Choose your shine, this
               is it.&quot;
             </p>

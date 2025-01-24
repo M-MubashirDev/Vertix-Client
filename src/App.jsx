@@ -13,7 +13,11 @@ import PageNotFound from "./Pages/PageNotFound";
 import Login from "./Pages/Login";
 import Payment from "./Pages/Payment";
 import CarDetails from "./Pages/CarDetails";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(useGSAP);
 const queryClient = new QueryClient();
+
 function App() {
   return (
     <>

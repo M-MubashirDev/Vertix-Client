@@ -381,7 +381,7 @@ function TextArea({ label, name, validation, rows = 4, ...rest }) {
 
   return (
     <div className="flex flex-col space-y-2">
-      <label htmlFor={name} className="text-sm text-gray-600">
+      <label htmlFor={name} className="text-sm text-gray-400">
         {label}
       </label>
       <textarea

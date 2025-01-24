@@ -14,7 +14,7 @@ function useServices() {
     // queryFn: () => getServices({ url: `get-packages-by-station/${stationId}` }),
     queryFn: () =>
       getServices({
-        url: `get-packages-by-station/67861f2b7f7caef48ef3d35b
+        url: `get-packages-by-station/${stationId}
     `,
       }),
   });

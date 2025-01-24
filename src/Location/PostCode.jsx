@@ -6,14 +6,14 @@ import { useState } from "react";
 export default function CarWashComponent() {
   const [currentLocation, setCurrentLocation] = useState("");
   const handleSuggestionSelect = (suggestion) => {
-    if (!suggestion) return;
     setCurrentLocation(suggestion);
-    sessionStorage.setItem("currentLocation", suggestion);
+    console.log(suggestion, currentLocation);
+    sessionStorage.setItem("currentLocation", JSON.stringify(suggestion));
   };
 
   return (
     <div className="bg-background p-4">
-      <div className="ml-24 mt-6">
+      <div className="sm:ml-24 flex sm:justify-start justify-center mt-6">
         <BackButton />
       </div>
       <div className="w-full h-screen flex flex-col mt-6 items-center text-center">
@@ -28,7 +28,7 @@ export default function CarWashComponent() {
         </p>
 
         {/* Input and Button */}
-        <div className="mt-6 flex items-start gap-2 w-full max-w-lg relative">
+        <div className="mt-6 flex flex-col items-center  gap-4 sm:flex-row sm:gap-2 sm:items-start w-full max-w-lg relative">
           <LocationSearch onSuggestionSelect={handleSuggestionSelect} />
           {/* <ExpandableButton
             text="Stations"

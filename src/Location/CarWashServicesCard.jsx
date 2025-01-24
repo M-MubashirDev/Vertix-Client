@@ -11,7 +11,7 @@ const CarWashServicesCard = ({ service }) => {
   }
   console.log(service);
   return (
-    <div key={service._id} className="group h-[60vh]  relative w-80">
+    <div key={service._id} className="group h-[60vh]  relative  md:w-80">
       <div className="relative h-[60vh]  overflow-hidden rounded-2xl bg-gradient-to-b from-slate-950 to-slate-900 p-[1px] shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan-500/25 ">
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500 to-blue-500 opacity-20"></div>
 
