@@ -134,6 +134,7 @@ const LocationSearch = ({ onSuggestionSelect }) => {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
+
     if (value) {
       const debounceFetch = setTimeout(() => fetchSuggestions(value), 300);
       return () => clearTimeout(debounceFetch);
@@ -143,20 +144,18 @@ const LocationSearch = ({ onSuggestionSelect }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    // Construct full location string
-    const locationParts = [
-      suggestion.properties.name,
-      suggestion.properties.city,
-      suggestion.properties.country,
-    ].filter(Boolean);
+    // Extract city from suggestion properties
+    const city =
+      suggestion.properties.city ||
+      suggestion.properties.context?.city?.name ||
+      suggestion.properties.name.split(",")[0].trim();
 
-    const fullLocation = locationParts.join(", ");
-    setQuery(fullLocation);
+    setQuery(city);
     setSuggestions([]);
 
     if (onSuggestionSelect) {
       onSuggestionSelect({
-        location: fullLocation,
+        city: city,
         coordinates: suggestion.geometry.coordinates,
       });
     }
@@ -168,7 +167,7 @@ const LocationSearch = ({ onSuggestionSelect }) => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        placeholder="Search by city or area..."
+        placeholder="Search by city name..."
         className="w-full px-4 py-2 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-light"
       />
       {suggestions.length > 0 && (
@@ -179,7 +178,7 @@ const LocationSearch = ({ onSuggestionSelect }) => {
               onClick={() => handleSuggestionClick(suggestion)}
               className="p-2 hover:bg-gray-100 cursor-pointer"
             >
-              {suggestion.properties.name || suggestion.properties.city},{" "}
+              {suggestion.properties.city || suggestion.properties.name},{" "}
               {suggestion.properties.country}
             </li>
           ))}

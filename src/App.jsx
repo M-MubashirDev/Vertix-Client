@@ -53,6 +53,11 @@ function App() {
                   path="stations/:cityName/:stationId/services"
                   element={<Services />}
                 />
+                {/* registration */}
+                <Route
+                  path="stations/:cityName/register"
+                  element={<Stations />}
+                />
                 <Route
                   path="stations/:cityName/:stationId/services/:packageId/cardetails"
                   element={<CarDetails />}

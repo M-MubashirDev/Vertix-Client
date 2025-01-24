@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAuthData } from "../Hooks/useSecurity";
 
 const Login = async ({ email, password }) => {
   try {
@@ -6,9 +7,13 @@ const Login = async ({ email, password }) => {
       email,
       password,
     });
-    const { token } = response.data;
+    if (response?.data?.user?.role !== "user") {
+      throw new Error("Wrong Credentials for User");
+    }
+    const { token, user } = response.data;
     response;
-    localStorage.setItem("authToken", token);
+    console.log("login...", user);
+    setAuthData({ token, user });
     return { success: true, token };
   } catch (error) {
     console.error("Login error response:", error.response?.data); // Log server response

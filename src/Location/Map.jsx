@@ -12,14 +12,11 @@ const customIcon = L.icon({
 });
 
 const Map = ({ stationsData }) => {
-  const currentLocation = JSON.parse(sessionStorage.getItem("currentLocation"));
-  console.log("😊😊", currentLocation);
-  const [lat, lng] = currentLocation.coordinates;
+  const storedCity = JSON.parse(sessionStorage.getItem("selectedCity"));
+  const [lat, lng] = storedCity.coordinates;
   const defaultPosition = [lng, lat]; // Default center (London)
   // const defaultPosition = currentLocation.coordinates || [33.495895, 73.105629]; // Default center (London)
-  const markers = [
-    { id: 1, position: [lng, lat], label: currentLocation.location },
-  ];
+  const markers = [{ id: 1, position: [lng, lat], label: storedCity.location }];
 
   return (
     <div className="min-w-full min-h-[20rem] h-[20rem]   lg:min-h-screen  w-full lg:h-full  ">

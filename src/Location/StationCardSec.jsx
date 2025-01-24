@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 function StationCardSec({ title, points, stationsData }) {
   const navigate = useNavigate();
   function Click(point) {
+    sessionStorage.setItem("selectedStation", JSON.stringify(point));
     navigate(`${point._id}/services`);
   }
+  // function Click(point) {
+  //   navigate(`${point._id}/services`);
+  // }
   return (
     <div className="w-full p-6 flex flex-wrap justify-center md:justify-start gap-12">
       {stationsData?.map((point, index) => (

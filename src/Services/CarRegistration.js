@@ -1,7 +1,8 @@
 import axios from "axios";
+import { getAuthData } from "../Hooks/useSecurity";
 
 export async function postCarRegister({ data }) {
-  const token = localStorage.getItem("authToken"); // Adjust token retrieval as needed
+  const { token } = getAuthData() || {}; // Adjust token retrieval as needed
   try {
     const response = await axios.post(
       `http://localhost:5000/api/create-car-registration`,

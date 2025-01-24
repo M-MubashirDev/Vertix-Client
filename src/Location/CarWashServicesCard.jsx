@@ -7,9 +7,9 @@ const CarWashServicesCard = ({ service }) => {
   const navigate = useNavigate();
   function Click() {
     if (!service) return;
+    sessionStorage.setItem("selectedPackage", JSON.stringify(service));
     navigate(`${service._id}/cardetails`);
   }
-  console.log(service);
   return (
     <div key={service._id} className="group h-[60vh]  relative  md:w-80">
       <div className="relative h-[60vh]  overflow-hidden rounded-2xl bg-gradient-to-b from-slate-950 to-slate-900 p-[1px] shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan-500/25 ">

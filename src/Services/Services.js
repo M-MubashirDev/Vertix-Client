@@ -1,7 +1,8 @@
 import axios from "axios";
+import { getAuthData } from "../Hooks/useSecurity";
 
 export async function getServices({ url }) {
-  const token = localStorage.getItem("authToken");
+  const { token } = getAuthData() || {};
 
   try {
     const response = await axios.get(`http://localhost:5000/api/${url}`, {

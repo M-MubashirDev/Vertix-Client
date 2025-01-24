@@ -1,11 +1,11 @@
 import axios from "axios";
 import { getAuthData } from "../Hooks/useSecurity";
 
-export async function Contectus({ data }) {
+async function postRegistration({ url, data }) {
   const { token } = getAuthData() || {};
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/contact-us`,
+      `http://localhost:5000/api/${url}`,
       data,
       {
         headers: {
@@ -14,11 +14,10 @@ export async function Contectus({ data }) {
         },
       }
     );
+    console.log(response);
     return response;
-  } catch (error) {
-    console.error("Error fetching  data:", error.message);
-    throw error;
+  } catch (err) {
+    throw new Error(err.message);
   }
 }
-
-//
+export { postRegistration };
