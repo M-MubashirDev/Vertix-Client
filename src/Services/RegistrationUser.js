@@ -1,8 +1,7 @@
 import axios from "axios";
-import { getAuthData } from "../Hooks/useSecurity";
+import { setAuthData } from "../Hooks/useSecurity";
 
 async function postRegistration({ url, data }) {
-  const { token } = getAuthData() || {};
   try {
     const response = await axios.post(
       `http://localhost:5000/api/${url}`,
@@ -10,10 +9,13 @@ async function postRegistration({ url, data }) {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
       }
     );
+    const { token, user } = response.data;
+    response;
+    console.log("login...", user);
+    setAuthData({ token, user });
     console.log(response);
     return response;
   } catch (err) {

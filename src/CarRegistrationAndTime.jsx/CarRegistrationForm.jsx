@@ -1,12 +1,34 @@
+import { useNavigate } from "react-router-dom";
 import Form from "../Components/Form";
+import { getAuthData } from "../Hooks/useSecurity";
 import { useCarDetailsSubmit } from "./Hook/useRegisterCar";
 
 function CarRegistrationForm() {
+  const navigate = useNavigate();
   const { submitCarDetailsMutate, submitPending } = useCarDetailsSubmit();
-  const onSubmit = (data) => {
+  const serviceStationId = JSON.parse(
+    sessionStorage.getItem("selectedStation")
+  );
+  const packageId = JSON.parse(sessionStorage.getItem("selectedPackage"));
+  const { user } = getAuthData();
+  // console.log(user.id, serviceStationId._id, packageId._id);
+  const onSubmit = (datas) => {
     // Handle form submission
-    console.log("Submitted Data:", data);
-    submitCarDetailsMutate({ data });
+    console.log("Submitted Data:", {
+      ...datas,
+      userId: user.id,
+      serviceStationId: serviceStationId._id,
+      packageId: packageId._id,
+    });
+    submitCarDetailsMutate({
+      data: {
+        ...datas,
+        userId: user.id,
+        serviceStationId: serviceStationId._id,
+        packageId: packageId._id,
+      },
+      url: "create-car-registration",
+    });
   };
 
   return (

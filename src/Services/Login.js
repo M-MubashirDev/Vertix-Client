@@ -11,7 +11,7 @@ const Login = async ({ email, password }) => {
       throw new Error("Wrong Credentials for User");
     }
     const { token, user } = response.data;
-    response;
+    // response;
     console.log("login...", user);
     setAuthData({ token, user });
     return { success: true, token };

@@ -15,6 +15,9 @@ import Payment from "./Pages/Payment";
 import CarDetails from "./Pages/CarDetails";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Register from "./Pages/Registration";
+import ProtectedWraper from "./Components/ProtectedWraper";
+import { Toaster } from "react-hot-toast";
 gsap.registerPlugin(useGSAP);
 const queryClient = new QueryClient();
 
@@ -25,15 +28,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/* Base Layout */}
-            <Route path="login" element={<Login />} />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Layout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path="/" element={<Layout />}>
               {/* Home Page */}
               <Route index element={<Home />} />
 
@@ -55,23 +50,37 @@ function App() {
                 />
                 {/* registration */}
                 <Route
-                  path="stations/:cityName/register"
-                  element={<Stations />}
+                  path="stations/:cityName/:stationId/services/:packageId/register"
+                  element={<Register />}
                 />
-                <Route
-                  path="stations/:cityName/:stationId/services/:packageId/cardetails"
-                  element={<CarDetails />}
-                />
-                <Route
-                  path="stations/:cityName/services/payment"
-                  element={<Payment />}
-                />
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/cardetails"
+                element={
+                  <ProtectedRoute>
+                    <ProtectedWraper />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<CarDetails />} />
+                <Route path="payment" element={<Payment />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#363636",
+              color: "#fff",
+            },
+          }}
+        />
       </QueryClientProvider>
     </>
   );

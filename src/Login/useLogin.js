@@ -10,7 +10,7 @@ function useLogin() {
     mutationFn: Login,
     onSuccess: () => {
       toast.success("Login successful!");
-      navigate("/");
+      navigate("/cardetails");
     },
     onError: (error) => {
       toast.error("Login failed. Please try again.");

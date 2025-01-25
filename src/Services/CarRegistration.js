@@ -1,11 +1,11 @@
 import axios from "axios";
 import { getAuthData } from "../Hooks/useSecurity";
 
-export async function postCarRegister({ data }) {
+export async function postCarRegister({ data, url }) {
   const { token } = getAuthData() || {}; // Adjust token retrieval as needed
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/create-car-registration`,
+      `http://localhost:5000/api/${url}`,
       data,
       {
         headers: {

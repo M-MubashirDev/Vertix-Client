@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import CustomForm from "../Components/Form";
 import BackButton from "../UI/BackButton";
 import { useRegistration } from "../UserRegistration/Hook/useRegitration";
 
 function Register() {
+  const navigate = useNavigate();
   const { mutateRegister, isPending: newAdminPend } = useRegistration();
 
   function submitFunc(values) {
@@ -16,10 +18,10 @@ function Register() {
       password: values.password,
       cellno: values.number,
     };
-    mutateRegister({ url: "create-admin", data });
+    mutateRegister({ url: "register", data });
   }
   return (
-    <div className="mt-8">
+    <div className="mt-8 max-w-[1440px] mx-auto w-[90%]">
       <BackButton />
       <div className="mt-8">
         <CustomForm onSubmit={submitFunc}>
@@ -81,8 +83,17 @@ function Register() {
             // }}
           />
 
-          <CustomForm.ButtonSubmit>Sign In</CustomForm.ButtonSubmit>
+          <CustomForm.ButtonSubmit>Register</CustomForm.ButtonSubmit>
         </CustomForm>
+        <h2 className="text-center mb-4 -mt-2">
+          Already have account?
+          <button
+            onClick={() => navigate("/login")}
+            className="text-blue-600 ml-2"
+          >
+            Login
+          </button>{" "}
+        </h2>
       </div>
     </div>
   );

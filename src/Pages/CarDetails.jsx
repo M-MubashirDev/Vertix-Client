@@ -34,9 +34,9 @@ function CarDetails() {
 
         {/* Calendar */}
       </div>
-      <div className=" ">
+      {/* <div className=" ">
         <Time />
-      </div>
+      </div> */}
     </div>
   );
 }
