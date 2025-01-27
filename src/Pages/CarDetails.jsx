@@ -1,17 +1,17 @@
 import CarRegistrationForm from "../CarRegistrationAndTime.jsx/CarRegistrationForm";
-import { Time } from "../ServicesPage/Time";
+// import { Time } from "../ServicesPage/Time";
 import BackButton, { ForwardButton } from "../UI/BackButton";
 
 function CarDetails() {
   return (
-    <div className="max-w-[1440px] mx-auto w-[90%] flex flex-col">
-      <div className="flex flex-col">
+    <div className="max-w-[1440px] mx-auto w-[90%] text-center md:text-start flex flex-col">
+      <div className="flex relative items-center flex-col">
         {/* Heading and Back/Forward Buttons */}
-        <div className="relative pt-8">
-          <div className="absolute left-12 top-8">
+        <div className=" pt-8   flex flex-col items-center">
+          <div className="   absolute left-12 top-4 md:opacity-100 opacity-0 ">
             <BackButton />
           </div>
-          <div className="absolute right-12 top-8">
+          <div className="   md:absolute mt-3 md:mt-0 mb-4 md:mb-0 right-12 top-4 ">
             <ForwardButton />
           </div>
           <div className="flex flex-col items-center">

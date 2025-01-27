@@ -13,7 +13,7 @@ function Services() {
           <div className="   absolute left-12 top-8 md:opacity-100 opacity-0 ">
             <BackButton />
           </div>
-          <div className="   md:absolute mt-3 mb-4 right-12 top-8 ">
+          <div className="   md:absolute mt-3 md:mt-0 mb-4 md:mb-0 right-12 top-8 ">
             <ForwardButton />
           </div>
           <div className="flex flex-col items-center">

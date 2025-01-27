@@ -83,8 +83,11 @@ export default function CarWashComponent() {
           The App For Affordable & Unlimited Car Washes
         </p>
 
-        <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:gap-2 sm:items-start w-full max-w-lg relative">
-          <LocationSearch onSuggestionSelect={handleSuggestionSelect} />
+        <div className="mt-6 flex flex-col-reverse items-center gap-4 sm:flex-row sm:gap-2 sm:items-start w-full max-w-lg relative">
+          <LocationSearch
+            onSuggestionSelect={handleSuggestionSelect}
+            setSelectedCity={setSelectedCity}
+          />
           <ButtonNavArrow
             disable={!selectedCity}
             to={`stations/${encodeURIComponent(selectedCity)}`}

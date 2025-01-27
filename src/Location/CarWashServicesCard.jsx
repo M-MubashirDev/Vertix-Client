@@ -25,7 +25,7 @@ const CarWashServicesCard = ({ service }) => {
                 ${service.price}
               </span>
             </div>
-            <p className="mt-2 text-sm text-slate-400">{service.description}</p>
+            {/* <p className="mt-2 text-sm text-slate-400"></p> */}
           </div>
 
           {/* Placeholder for tick mark UI */}
@@ -36,7 +36,7 @@ const CarWashServicesCard = ({ service }) => {
             </div>
             <div>
               <p className="text-sm font-medium text-white">Some feature</p>
-              <p className="text-xs text-slate-400">Details of the feature</p>
+              <p className="text-xs text-slate-400">{service.description}</p>
             </div>
           </div>
 

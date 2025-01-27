@@ -7,8 +7,10 @@ import Testimonials from "../Components/Testimonials";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 function Home() {
+  const navigate = useNavigate();
   //gsap
   const navbarRef = useRef(null);
   const contentRef = useRef(null);
@@ -122,7 +124,7 @@ function Home() {
               meaningful interactions in a fast-paced, connected world.
             </p>
             <div>
-              <ButtonNav>Get Start</ButtonNav>
+              <ButtonNav to="location">Get Start</ButtonNav>
             </div>
             {/* <div>
             </div> */}

@@ -94,10 +94,9 @@ function Stations() {
   const navigate = useNavigate();
   const { cityName } = useParams();
   const storedCity = JSON.parse(sessionStorage.getItem("selectedCity"));
-  console.log(storedCity);
   // Fetching stations
   const { stationsData, pendingStations } = UseStations();
-
+  console.log(stationsData);
   useEffect(() => {
     if (!storedCity || cityName !== storedCity.city) {
       navigate("*");

@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import ExpandableButton from "../UI/ExpandableButton";
 import { RiCarWashingFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const FeatureIcon = ({ icon, title, description }) => {
   return (
@@ -24,6 +25,7 @@ const FeatureIcon = ({ icon, title, description }) => {
 };
 
 const FeaturesSection = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: <FaHandsWash size={30} className="text-gray-600" />,
@@ -80,7 +82,10 @@ const FeaturesSection = () => {
             />
           ))}
         </div>
-        <div className="w-full flex justify-end sm:opacity-100 opacity-0">
+        <div
+          onClick={() => navigate("location")}
+          className="w-full flex justify-end sm:opacity-100 opacity-0"
+        >
           <ExpandableButton
             icon={<RiCarWashingFill color="white" />}
             text="lets wash"

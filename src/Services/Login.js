@@ -16,7 +16,7 @@ const Login = async ({ email, password }) => {
     setAuthData({ token, user });
     return { success: true, token };
   } catch (error) {
-    console.error("Login error response:", error.response?.data); // Log server response
+    console.error("Login error response:", error.response); // Log server response
     throw error;
   }
 };

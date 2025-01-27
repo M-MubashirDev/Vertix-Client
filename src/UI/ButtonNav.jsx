@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { IoArrowForward } from "react-icons/io5";
 
-function ButtonNav({ children }) {
+function ButtonNav({ children, to }) {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate("/")}
-      className="flex items-center gap-2 sm:gap-3 md:gap-4 z-50 cursor-pointer text-white bg-gradient-to-r from-gray-800 to-black px-5 sm:px-7 md:px-10 py-3 sm:py-4 font-bold rounded-full border border-gray-600 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 text-sm sm:text-base md:text-lg transition-all duration-300"
+      onClick={() => navigate(to)}
+      className="flex items-center relative gap-2 sm:gap-3 md:gap-4 z-50 cursor-pointer text-white bg-gradient-to-r from-gray-800 to-black px-5 sm:px-7 md:px-10 py-3 sm:py-4 font-bold rounded-full border border-gray-600 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 text-sm sm:text-base md:text-lg transition-all duration-300"
     >
       {children}
       <IoArrowForward

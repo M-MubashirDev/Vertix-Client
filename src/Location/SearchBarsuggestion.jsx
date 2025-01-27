@@ -96,7 +96,7 @@
 // LocationSearch.jsx (Frontend Component)
 import { useState, useEffect, useRef } from "react";
 
-const LocationSearch = ({ onSuggestionSelect }) => {
+const LocationSearch = ({ onSuggestionSelect, setSelectedCity }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const inputRef = useRef(null);
@@ -136,10 +136,12 @@ const LocationSearch = ({ onSuggestionSelect }) => {
     setQuery(value);
 
     if (value) {
-      const debounceFetch = setTimeout(() => fetchSuggestions(value), 300);
+      const debounceFetch = setTimeout(() => fetchSuggestions(value), 10);
       return () => clearTimeout(debounceFetch);
     } else {
       setSuggestions([]);
+      setSelectedCity("");
+      sessionStorage.removeItem("selectedCity"); // Clear session storage when input is cleared
     }
   };
 

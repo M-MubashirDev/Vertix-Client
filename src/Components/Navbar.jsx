@@ -97,9 +97,8 @@ const Navbar = () => {
     { label: "Home", to: "/" },
     { label: "Contact Us", to: "/contectus" },
     {
-      label: "Log out",
+      label: "Log in",
       to: "/login",
-      func: () => localStorage.removeItem("authToken"),
     },
   ];
 
