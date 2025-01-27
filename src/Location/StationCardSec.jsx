@@ -1,3 +1,59 @@
+import { useNavigate } from "react-router-dom";
+import { FaBuilding } from "react-icons/fa";
+
+function StationCardSec({ title, points, stationsData }) {
+  const navigate = useNavigate();
+
+  function handleClick(point) {
+    sessionStorage.setItem("selectedStation", JSON.stringify(point));
+    navigate(`${point._id}/services`);
+  }
+
+  return (
+    <div className="w-full p-6 flex flex-wrap justify-center md:justify-start gap-20">
+      {stationsData?.map((point, index) => (
+        <div
+          key={point._id}
+          onClick={() => handleClick(point)}
+          className="cursor-pointer flex flex-col sm:flex-row gap-4 items-center w-full md:w-[48%] lg:w-fit transition-transform hover:scale-105"
+        >
+          {/* Station Image */}
+          <img
+            src={point.image ? point.image : "/stationNots.webp"}
+            alt="station img"
+            className="w-16 h-16 rounded-full object-cover hover:opacity-80 transition-opacity"
+          />
+
+          {/* Station Info */}
+          <div className="sm:text-start flex flex-col text-center items-center sm:items-start gap-1 w-full">
+            {/* Station Name */}
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800 flex items-center gap-2">
+              <FaBuilding className="text-primary" />
+              {point.name || "Car Wash Station"}
+            </h3>
+
+            {/* Location */}
+            <p className="text-primary text-base md:text-lg flex items-center gap-2">
+              <img
+                src="/markedremoved.png"
+                alt="location mark"
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+              {point.location || "Unknown Location"}
+            </p>
+
+            {/* Address */}
+            <p className="text-gray-600 text-sm md:text-base">
+              {point.address || "Address not available"}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default StationCardSec;
 // import { useNavigate } from "react-router-dom";
 // import { FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
 
@@ -111,59 +167,3 @@
 // }
 
 // export default StationCardSec;
-import { useNavigate } from "react-router-dom";
-import { FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
-
-function StationCardSec({ title, points, stationsData }) {
-  const navigate = useNavigate();
-
-  function handleClick(point) {
-    sessionStorage.setItem("selectedStation", JSON.stringify(point));
-    navigate(`${point._id}/services`);
-  }
-
-  return (
-    <div className="w-full p-6 flex flex-wrap justify-center md:justify-start gap-20">
-      {stationsData?.map((point, index) => (
-        <div
-          key={point._id}
-          onClick={() => handleClick(point)}
-          className="cursor-pointer flex flex-col sm:flex-row gap-4 items-center w-full md:w-[48%] lg:w-fit transition-transform hover:scale-105"
-        >
-          {/* Station Image */}
-          <img
-            src={point.image ? point.image : "/stationNots.webp"}
-            alt="station img"
-            className="w-16 h-16 rounded-full object-cover hover:opacity-80 transition-opacity"
-          />
-
-          {/* Station Info */}
-          <div className="text-start flex flex-col gap-1 w-full">
-            {/* Station Name */}
-            <h3 className="text-lg md:text-xl font-semibold text-gray-800 flex items-center gap-2">
-              <FaBuilding className="text-primary" />
-              {point.name || "Car Wash Station"}
-            </h3>
-
-            {/* Location */}
-            <p className="text-primary text-base md:text-lg flex items-center gap-2">
-              <img
-                src="/markedremoved.png"
-                alt="location mark"
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
-              {point.location || "Unknown Location"}
-            </p>
-
-            {/* Address */}
-            <p className="text-gray-600 text-sm md:text-base">
-              {point.address || "Address not available"}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default StationCardSec;

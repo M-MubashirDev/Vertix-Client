@@ -19,6 +19,7 @@ import Register from "./Pages/Registration";
 import ProtectedWraper from "./Components/ProtectedWraper";
 import { Toaster } from "react-hot-toast";
 import UserLanding from "./Pages/UserLanding";
+import LandingContext from "./Components/LandingContext";
 gsap.registerPlugin(useGSAP);
 const queryClient = new QueryClient();
 
@@ -60,7 +61,9 @@ function App() {
                 path="/cardetails"
                 element={
                   <ProtectedRoute>
-                    <ProtectedWraper />
+                    <LandingContext>
+                      <ProtectedWraper />
+                    </LandingContext>
                   </ProtectedRoute>
                 }
               >

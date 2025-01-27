@@ -45,10 +45,20 @@ const BackButton = () => {
 };
 // src/components/ForwardButton.jsx
 
-const ForwardButton = () => {
+const ForwardButton = ({ latitude, longitude }) => {
+  const handleClick = () => {
+    if (latitude && longitude) {
+      const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+      window.open(googleMapsUrl, "_blank"); // Opens Google Maps in a new tab
+    } else {
+      alert("Latitude and Longitude are not available!");
+    }
+  };
+
   return (
     <button
       type="button"
+      onClick={handleClick} // Attach the click handler
       className="bg-white text-center w-36 rounded-xl h-10 relative text-primary font-semibold border-2 border-primary group focus:outline-none focus:ring-2 focus:ring-primary-dark"
       aria-label="Go Forward"
     >

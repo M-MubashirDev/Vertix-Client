@@ -96,7 +96,7 @@ function Stations() {
   const storedCity = JSON.parse(sessionStorage.getItem("selectedCity"));
   // Fetching stations
   const { stationsData, pendingStations } = UseStations();
-  console.log(stationsData);
+  console.log(stationsData, "🌏🌏🌏");
   useEffect(() => {
     if (!storedCity || cityName !== storedCity.city) {
       navigate("*");
