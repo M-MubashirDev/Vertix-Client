@@ -1,4 +1,5 @@
 // src/components/BackButton.jsx
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const BackButton = () => {
@@ -51,7 +52,7 @@ const ForwardButton = ({ latitude, longitude }) => {
       const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
       window.open(googleMapsUrl, "_blank"); // Opens Google Maps in a new tab
     } else {
-      alert("Latitude and Longitude are not available!");
+      toast.error("Please select the Station first");
     }
   };
 

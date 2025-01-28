@@ -83,7 +83,19 @@ function Register() {
             // }}
           />
 
-          <CustomForm.ButtonSubmit>Register</CustomForm.ButtonSubmit>
+          {/* <CustomForm.ButtonSubmit>Register</CustomForm.ButtonSubmit> */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 sm:max-w-[50rem]">
+            <CustomForm.ButtonSubmit isSubmitting={newAdminPend}>
+              Register
+            </CustomForm.ButtonSubmit>
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-xl hover:bg-gray-300 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
         </CustomForm>
         <h2 className="text-center mb-4 -mt-2">
           Already have account?

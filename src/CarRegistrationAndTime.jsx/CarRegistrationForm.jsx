@@ -68,7 +68,19 @@ function CarRegistrationForm() {
         name="cnic"
         validation={{ required: "CNIC is required" }}
       />
-      <Form.ButtonSubmit>Submit</Form.ButtonSubmit>
+      {/* <Form.ButtonSubmit>Submit</Form.ButtonSubmit> */}
+      <div className="flex flex-col sm:flex-row gap-4 mt-8 sm:max-w-[50rem]">
+        <Form.ButtonSubmit isSubmitting={submitPending}>
+          Register
+        </Form.ButtonSubmit>
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-xl hover:bg-gray-300 transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
     </Form>
   );
 }

@@ -4,10 +4,9 @@ import HeadingWithAnimation from "../UI/HeadingWithAnimation";
 import AnimatedProfileBar from "../UserLanding/Hooks/ProfileBar";
 import useRegisterCar from "../UserLanding/Hooks/useUserLanding";
 import AnimatedCarCard from "../UserLanding/RegisterBar";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 function UserLanding() {
-  const navigate = useNavigate();
   const { user } = getAuthData();
   const { RegisterCarData, pendingRegisterCar } = useRegisterCar();
 
@@ -17,11 +16,11 @@ function UserLanding() {
   }, [RegisterCarData, user.id]);
 
   // Navigate to "newcar" if no registered cars are found
-  useEffect(() => {
-    if (userRegister && userRegister.length === 0) {
-      navigate("newcar");
-    }
-  }, [userRegister, navigate]);
+  // useEffect(() => {
+  //   if (userRegister && userRegister.length === 0) {
+  //     navigate("newcar");
+  //   }
+  // }, [userRegister, navigate]);
 
   // Show spinner while loading data
   if (pendingRegisterCar) return <h1>spinner</h1>;

@@ -8,6 +8,7 @@ import {
   useController,
 } from "react-hook-form";
 import handleUpload from "../Hooks/useUploadCloudnary";
+import { Spinner } from "../UI/Spinner";
 
 // Main Form Component
 function Form({ children, onSubmit, defaultValues = {} }) {
@@ -352,26 +353,19 @@ function ButtonSubmit({ children, isSubmitting }) {
     <button
       type="submit"
       disabled={isSubmitting}
-      className={`relative h-12 overflow-hidden text-white bg-primary-dark w-full shadow-2xl rounded-md border-2 border-primary-dark transition-all duration-300 ease-in-out ${
-        isSubmitting
-          ? "opacity-50 cursor-not-allowed"
-          : "hover:bg-primary-light hover:scale-105 hover:shadow-lg"
+      className={`relative h-12 overflow-hidden rounded-xl text-white bg-primary-dark w-full shadow-2xl ${
+        isSubmitting ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >
-      <span
-        className={`relative z-10 transition-all duration-300 ${
-          isSubmitting ? "text-gray-300" : "hover:text-gray-200"
-        }`}
-      >
-        {isSubmitting ? "Submitting..." : children}
+      <span className="relative flex justify-center z-10">
+        {isSubmitting ? <Spinner /> : children}
       </span>
-      {!isSubmitting && (
-        <span className="absolute inset-0 bg-primary-light opacity-0 transition-opacity duration-300 hover:opacity-20"></span>
-      )}
     </button>
   );
 }
 
+// Export Subcomponents
+// Form.ButtonSubmit = ButtonSubmit;
 // TextArea Component
 function TextArea({ label, name, validation, rows = 4, ...rest }) {
   const {

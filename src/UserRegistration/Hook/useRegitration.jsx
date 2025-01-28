@@ -8,13 +8,13 @@ export function useRegistration() {
 
   const {
     mutate: mutateRegister,
-    isLoading: isPending,
+    isPending: isPending,
     isSuccess,
   } = useMutation({
     mutationFn: postRegistration,
     onSuccess: () => {
       toast.success("Regitration successfull created");
-      navigate("/cardetails");
+      navigate("/cardetails/newcar");
     },
     onError: (error) => {
       toast.error("Please Try Again: " + error.message);

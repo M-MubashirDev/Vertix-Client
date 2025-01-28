@@ -3,16 +3,20 @@ import CarRegistrationForm from "../CarRegistrationAndTime.jsx/CarRegistrationFo
 import BackButton, { ForwardButton } from "../UI/BackButton";
 
 function CarDetails() {
+  const selectedStation = JSON.parse(sessionStorage.getItem("selectedStation"));
   return (
     <div className="max-w-[1440px] mx-auto w-[90%] text-center md:text-start flex flex-col">
       <div className="flex relative items-center flex-col">
         {/* Heading and Back/Forward Buttons */}
         <div className=" pt-8   flex flex-col items-center">
-          <div className="   absolute left-12 top-4 md:opacity-100 opacity-0 ">
+          <div className="   absolute left-0 top-4 md:opacity-100 opacity-0 ">
             <BackButton />
           </div>
-          <div className="   md:absolute mt-3 md:mt-0 mb-4 md:mb-0 right-12 top-4 ">
-            <ForwardButton />
+          <div className="   md:absolute mt-3 md:mt-0 mb-4 md:mb-0 right-0 top-4 ">
+            <ForwardButton
+              latitude={selectedStation?.latitude}
+              longitude={selectedStation?.longitude}
+            />
           </div>
           <div className="flex flex-col items-center">
             <h2 className="lg:text-2xl md:text-xl text-lg text-primary tracking-widest">
