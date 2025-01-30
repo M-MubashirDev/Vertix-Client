@@ -117,4 +117,4 @@ function HeadingWithAnimation({ user }) {
 }
 
 export default HeadingWithAnimation;
-// http://localhost:5000/api/get-car-registrations
+// https://vertix-nine.vercel.app/get-car-registrations

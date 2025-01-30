@@ -4,7 +4,7 @@ import { getAuthData } from "../Hooks/useSecurity";
 export async function getStations({ url }) {
   try {
     const { token } = getAuthData() || {};
-    const response = await axios.get(`http://localhost:5000/api/${url}`, {
+    const response = await axios.get(`https://vertix-nine.vercel.app/${url}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

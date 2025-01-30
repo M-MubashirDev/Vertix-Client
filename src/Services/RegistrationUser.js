@@ -4,7 +4,7 @@ import { getAuthData, setAuthData } from "../Hooks/useSecurity";
 async function postRegistration({ url, data }) {
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/${url}`,
+      `https://vertix-nine.vercel.app/${url}`,
       data,
       {
         headers: {
@@ -26,7 +26,7 @@ async function getAllCarRegister({ url }) {
   const { token } = getAuthData() || {};
 
   try {
-    const response = await axios.get(`http://localhost:5000/api/${url}`, {
+    const response = await axios.get(`https://vertix-nine.vercel.app/${url}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

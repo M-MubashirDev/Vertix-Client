@@ -5,7 +5,7 @@ export async function postCarRegister({ data, url }) {
   const { token } = getAuthData() || {}; // Adjust token retrieval as needed
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/${url}`,
+      `https://vertix-nine.vercel.app/${url}`,
       data,
       {
         headers: {
@@ -22,9 +22,9 @@ export async function postCarRegister({ data, url }) {
 
 export async function getShopTiming({ url }) {
   try {
-    const response = await axios.get(`http://localhost:5000/api/${url}`);
+    const response = await axios.get(`https://vertix-nine.vercel.app/${url}`);
     // const response = await axios.get(
-    //   `http://localhost:5000/api/get-all-station-timings/6780f5b9045a1bd712807aad`
+    //   `https://vertix-nine.vercel.app/get-all-station-timings/6780f5b9045a1bd712807aad`
     // );
 
     return response.data;
