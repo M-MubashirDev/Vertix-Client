@@ -1,4 +1,4 @@
-import CarRegistrationForm from "../CarRegistrationAndTime.jsx/CarRegistrationForm";
+import CarRegistrationForm from "../CarRegistrationAndTime/CarRegistrationForm";
 // import { Time } from "../ServicesPage/Time";
 import BackButton, { ForwardButton } from "../UI/BackButton";
 
