@@ -5,12 +5,15 @@ export async function getServices({ url }) {
   const { token } = getAuthData() || {};
 
   try {
-    const response = await axios.get(`https://vertix-nine.vercel.app/${url}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      `https://vertix-nine.vercel.app/api/${url}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     return response.data;
   } catch (err) {

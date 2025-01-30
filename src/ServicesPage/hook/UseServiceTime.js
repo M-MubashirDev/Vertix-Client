@@ -3,7 +3,7 @@ import { getServices } from "../../Services/Services";
 import { useParams } from "react-router-dom";
 
 function UserServiceTime() {
-  // https://vertix-nine.vercel.app/get-packages-by-station/67861f2b7f7caef48ef3d35b
+  // https://vertix-nine.vercel.app/api/get-packages-by-station/67861f2b7f7caef48ef3d35b
 
   const { stationId } = useParams();
   const {

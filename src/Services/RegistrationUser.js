@@ -4,7 +4,7 @@ import { getAuthData, setAuthData } from "../Hooks/useSecurity";
 async function postRegistration({ url, data }) {
   try {
     const response = await axios.post(
-      `https://vertix-nine.vercel.app/${url}`,
+      `https://vertix-nine.vercel.app/api/${url}`,
       data
     );
     const { token, user } = response.data;
@@ -21,12 +21,15 @@ async function getAllCarRegister({ url }) {
   const { token } = getAuthData() || {};
 
   try {
-    const response = await axios.get(`https://vertix-nine.vercel.app/${url}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      `https://vertix-nine.vercel.app/api/${url}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     return response.data;
   } catch (err) {

@@ -5,7 +5,7 @@ export async function Contectus({ data }) {
   const { token } = getAuthData() || {};
   try {
     const response = await axios.post(
-      `https://vertix-nine.vercel.app/contact-us`,
+      `https://vertix-nine.vercel.app/api/contact-us`,
       data,
       {
         headers: {
