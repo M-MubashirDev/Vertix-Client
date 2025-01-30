@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Form from "../Components/Form";
 import { getAuthData } from "../Hooks/useSecurity";
-import { useCarDetailsSubmit } from "./Hook/useRegisterCar";
+import useCarDetailsSubmit from "./hook/useRegisterCar";
 
 function CarRegistrationForm() {
   const navigate = useNavigate();

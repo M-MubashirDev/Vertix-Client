@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { postCarRegister } from "../../Services/CarRegistration";
 
-export function useCarDetailsSubmit() {
+export default function useCarDetailsSubmit() {
   const { mutate: submitCarDetailsMutate, isPending: submitPending } =
     useMutation({
       mutationFn: postCarRegister,
