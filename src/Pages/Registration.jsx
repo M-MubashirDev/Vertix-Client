@@ -9,17 +9,24 @@ function Register() {
 
   function submitFunc(values) {
     if (!values) return;
+
+    const formData = new FormData();
+    formData.append("firstname", values.firstname);
+    formData.append("lastname", values.lastname);
+    formData.append("email", values.email);
+    // formData.append("cellno", values.cellno); // Fixed incorrect value
+    formData.append("password", values.password);
+
+    if (values.profileImage) {
+      formData.append("image", values.profileImage); // Ensure it's a file object
+    } else {
+      console.error("profileImage is not a valid File object");
+    }
     console.log(values.profileImage);
-    const data = {
-      firstname: values.firstname,
-      lastname: values.lastname,
-      email: values.email,
-      image: "",
-      password: values.password,
-      cellno: values.number,
-    };
-    mutateRegister({ url: "register", data });
+
+    mutateRegister({ url: "register", data: formData });
   }
+
   return (
     <div className="mt-8 max-w-[1440px] mx-auto w-[90%]">
       <BackButton />

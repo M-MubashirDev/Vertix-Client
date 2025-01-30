@@ -5,12 +5,7 @@ async function postRegistration({ url, data }) {
   try {
     const response = await axios.post(
       `https://vertix-nine.vercel.app/${url}`,
-      data,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      data
     );
     const { token, user } = response.data;
     response;
