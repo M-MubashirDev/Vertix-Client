@@ -5,6 +5,7 @@ import AnimatedProfileBar from "../UserLanding/Hooks/ProfileBar";
 import useRegisterCar from "../UserLanding/Hooks/useUserLanding";
 import AnimatedCarCard from "../UserLanding/RegisterBar";
 import { useMemo } from "react";
+import FullPageSpinner from "../UI/Spinner";
 
 function UserLanding() {
   const { user } = getAuthData();
@@ -23,7 +24,7 @@ function UserLanding() {
   // }, [userRegister, navigate]);
 
   // Show spinner while loading data
-  if (pendingRegisterCar) return <h1>spinner</h1>;
+  if (pendingRegisterCar) return <FullPageSpinner />;
 
   return (
     <div className="py-12 mx-auto w-[90%] max-w-[1440px]">
