@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UseStations from "../Location/hook/UseStations";
 import Map from "../Location/Map";
 import StationCardSec from "../Location/StationCardSec";
 import Spinner from "../UI/Spinner";
 import BackButton from "../UI/BackButton";
 import { ButtonNavArrow } from "../UI/ButtonNav";
+import { gsap } from "gsap";
 
 function Stations() {
   const [search, setSearch] = useState(""); // Store the search query
@@ -28,8 +29,19 @@ function Stations() {
     )
   );
 
+  useEffect(() => {
+    if (searched && filteredData?.length > 0) {
+      gsap.fromTo(
+        ".station-card", // This targets each station card
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 2, stagger: 0.2, ease: "power3.out" }
+      );
+    }
+  }, [searched, filteredData]);
   // If data is still pending, show the spinner
   if (pendingStations) return <Spinner />;
+
+  // Use gsap to animate the filtered data when it appears
 
   return (
     <div
@@ -37,7 +49,7 @@ function Stations() {
       className="flex flex-col  max-w-[1440px] mx-auto w-[90%]"
     >
       {/* Left Section: Station Cards */}
-      <div className="lg:flex-1 w-full max-w-[1440px] mx-auto flex flex-col pl-4 py-10 relative">
+      <div className="lg:flex-1 w-full max-w-[1440px] mx-auto min-h-screen flex flex-col pl-4 py-10 relative">
         <div
           style={{
             backgroundImage: "url('/tastejj.jpg')",
@@ -64,43 +76,49 @@ function Stations() {
           </h1>
           <form
             onSubmit={SearchQuery}
-            className="w-full flex justify-center gap-6 pt-10 pb-2"
+            className="w-full flex flex-col items-center sm:flex-row sm:items-start justify-center gap-6 pt-10 pb-2"
           >
             <input
               type="text"
               placeholder="Search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-[30rem] px-4 py-2 text-lg rounded-full border  border-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-light"
+              className="sm:w-[30rem] max-w-fit px-4 py-2 text-lg rounded-full border  border-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-light"
             />
             <div className="max-w-fit">
-              <ButtonNavArrow>Search Stations</ButtonNavArrow>
+              <ButtonNavArrow disable={!query}>Search Stations</ButtonNavArrow>
             </div>
           </form>
-
-          {/* If no search has been made, show a prompt message */}
           {!searched && (
-            <div className="mt-5 text-xl text-gray-500">
+            <div className="mt-5 text-center text-xl text-gray-500">
               <h2>
                 Search for stations by entering keywords in the search bar.
               </h2>
             </div>
           )}
 
-          {/* If results are found after search */}
-          {filteredData?.length > 0 ? (
-            <StationCardSec stationsData={filteredData} />
-          ) : (
-            // If no results found, show a friendly message
-            searched && (
-              <div className="flex flex-col gap-5 mt-5">
-                <h1 className="text-xl text-gray-500 mt-4">
-                  No stations found matching your search. Please try again with
-                  a different query.
-                </h1>
-                <BackButton />
-              </div>
-            )
+          {/* If no search has been made, show a prompt message */}
+
+          {/* If search has been made, show results */}
+          {searched && (
+            <>
+              {/* If results are found after search */}
+              {filteredData?.length > 0 ? (
+                <StationCardSec
+                  stationsData={filteredData}
+                  className="station-card" // Add a class for GSAP animation
+                />
+              ) : (
+                // If no results found, show a friendly message
+                <div className="flex flex-col gap-5 mt-5">
+                  <h1 className="text-xl text-gray-500 mt-4">
+                    No stations found matching your search. Please try again
+                    with a different query.
+                  </h1>
+                  <BackButton />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

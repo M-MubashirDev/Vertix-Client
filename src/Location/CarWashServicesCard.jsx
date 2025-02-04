@@ -8,7 +8,7 @@ const CarWashServicesCard = ({ service }) => {
   function Click() {
     if (!service) return;
     sessionStorage.setItem("selectedPackage", JSON.stringify(service));
-    navigate(`${service._id}/register`);
+    navigate(`register/${service._id}`);
   }
   return (
     <div key={service._id} className="group h-[60vh]  relative  md:w-80">

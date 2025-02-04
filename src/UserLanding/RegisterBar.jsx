@@ -24,7 +24,7 @@ function AnimatedCarCard({ car }) {
       className="p-6 rounded-xl shadow-lg bg-gradient-to-br from-primary-dark to-primary-light text-white transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl"
     >
       {/* Header Section */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center text-center flex-col sm:flex-row gap-4 mb-6">
         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white/20">
           <FaCar className="text-3xl text-white" />
         </div>
@@ -38,7 +38,7 @@ function AnimatedCarCard({ car }) {
 
       {/* Package Details */}
       {car.packageId && (
-        <div className="mb-4 space-y-2">
+        <div className="mb-4 flex flex-col items-center sm:items-start space-y-2">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <FaInfoCircle /> {car.packageId.title}
           </h3>
@@ -50,7 +50,7 @@ function AnimatedCarCard({ car }) {
       )}
 
       {/* Owner and Address */}
-      <div className="mt-6 pt-4 border-t border-white/20">
+      <div className="mt-6 pt-4 flex flex-col items-center sm:items-start border-t border-white/20">
         <p className="text-sm flex items-center gap-2 opacity-90">
           <FaMapMarkerAlt /> {car.ownerAddress}
         </p>

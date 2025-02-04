@@ -1,52 +1,3 @@
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import "leaflet/dist/leaflet.css";
-// import L from "leaflet";
-
-// // Fix for Leaflet's default marker icon paths
-
-// const customIcon = L.icon({
-//   iconUrl: "/markedremoved.png",
-//   iconSize: [60, 60],
-//   iconAnchor: [15, 40],
-//   popupAnchor: [0, -40],
-// });
-
-// const Map = ({ stationsData }) => {
-//   console.log(stationsData, "😒😒");
-
-//   const storedCity = JSON.parse(sessionStorage.getItem("selectedCity"));
-//   const [lat, lng] = storedCity.coordinates;
-//   const defaultPosition = [lng, lat]; // Default center (London)
-//   // const defaultPosition = currentLocation.coordinates || [33.495895, 73.105629]; // Default center (London)
-//   const markers = [{ id: 1, position: [lng, lat], label: storedCity.location }];
-
-//   return (
-//     <div className="min-w-full min-h-[20rem] h-[20rem]   lg:min-h-screen  w-full lg:h-full  ">
-//       <MapContainer
-//         center={defaultPosition}
-//         zoom={15}
-//         scrollWheelZoom={true}
-//         style={{ height: "100%", width: "100%" }} // Ensures the map uses full space
-//       >
-//         {/* Tile Layer for Map Display */}
-//         <TileLayer
-//           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//         />
-
-//         {/* Add Markers */}
-//         {stationsData &&
-//           markers.map((marker, index) => (
-//             <Marker key={index} position={marker.position} icon={customIcon}>
-//               <Popup>{marker.label}</Popup>
-//             </Marker>
-//           ))}
-//       </MapContainer>
-//     </div>
-//   );
-// };
-
-// export default Map;
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -60,23 +11,23 @@ const customIcon = L.icon({
 });
 
 const Map = ({ stationsData }) => {
-  console.log("Stations Data:", stationsData);
+  console.log("Filtered Stations Data:", stationsData);
 
-  // Default position fallback to the first station or a static location
-  const defaultPosition =
-    stationsData?.length > 0
-      ? [
-          parseFloat(stationsData[0].latitude),
-          parseFloat(stationsData[0].longitude),
-        ]
-      : [33.495895, 73.105629]; // Default position if no station data is available
+  // Default position fallback if no filtered data exists
+  const defaultPosition = [33.495895, 73.105629]; // Default position if no station data is available
 
-  console.log("Default Position:", defaultPosition);
+  // Get the first station's position if available
+  const firstStationPosition = stationsData?.[0]
+    ? [
+        parseFloat(stationsData[0].latitude),
+        parseFloat(stationsData[0].longitude),
+      ]
+    : defaultPosition;
 
   return (
-    <div className="min-w-full min-h-[20rem] h-[20rem] lg:min-h-screen w-full lg:h-full">
+    <div className="min-w-full max-h-[20rem] h-[20rem]  w-full ">
       <MapContainer
-        center={defaultPosition}
+        center={firstStationPosition} // Set the initial center to the first station
         zoom={15}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
@@ -87,7 +38,7 @@ const Map = ({ stationsData }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Add Markers for All Stations */}
+        {/* Add Markers for Filtered Stations */}
         {stationsData &&
           stationsData
             .filter(
