@@ -10,7 +10,7 @@ function StationCardSec({ title, points, stationsData }) {
   }
 
   return (
-    <div className="w-full p-6 flex flex-wrap justify-center md:justify-start gap-20">
+    <div className="w-full  p-6 flex flex-wrap justify-center md:justify-start gap-20">
       {stationsData?.map((point, index) => (
         <div
           key={point._id}

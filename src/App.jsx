@@ -40,10 +40,10 @@ function App() {
               {/* Location Page */}
               <Route path="location" element={<Location />}>
                 {/* Poster Selection */}
-                <Route index element={<LocationPoster />} />
+                {/* <Route element={<LocationPoster />} /> */}
 
                 {/* Select Stations */}
-                <Route path="stations/:cityName" element={<Stations />} />
+                <Route index element={<Stations />} />
 
                 {/* Select Services */}
                 <Route

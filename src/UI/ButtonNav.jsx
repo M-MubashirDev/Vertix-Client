@@ -7,7 +7,7 @@ function ButtonNav({ children, to }) {
   return (
     <button
       onClick={() => navigate(to)}
-      className="flex items-center relative gap-2 sm:gap-3 md:gap-4 z-50 cursor-pointer text-white bg-gradient-to-r from-gray-800 to-black px-5 sm:px-7 md:px-10 py-3 sm:py-4 font-bold rounded-full border border-gray-600 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 text-sm sm:text-base md:text-lg transition-all duration-300"
+      className="flex items-center relative gap-2 sm:gap-3 md:gap-4 z-50 cursor-pointer text-white bg-gradient-to-r from-gray-800 to-black px-5 sm:px-7 md:px-10 py-3 sm:py-4 font-bold rounded-full border  border-gray-600 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 text-sm sm:text-base md:text-lg transition-all duration-300"
     >
       {children}
       <IoArrowForward
@@ -26,7 +26,7 @@ export function ButtonNavArrow({ children, to, disable }) {
       disabled={disable}
       onClick={() => navigate(to)}
       type="submit"
-      className={`flex text-gray-50 ${
+      className={`flex  text-gray-50 ${
         disable ? "cursor-not-allowed" : ""
       } justify-center gap-2 hover:shadow-2xl items-center mx-auto shadow-lg  text-lg bg-primary-dark hover:bg-gray-50 lg:font-semibold isolation-auto border-primary-dark hover:border-primary-dark before:absolute before:w-full before:transition-all before:duration-700 before:rounded-full before:bg-primary-dark hover:before:bg-gray-50 hover:text-primary-dark before:-z-10 before:aspect-square before:scale-150  relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group`}
     >
