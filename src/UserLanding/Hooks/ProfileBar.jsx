@@ -93,7 +93,7 @@ function AnimatedProfileBar({ user }) {
         </button>
       </div>
       {/* User Details */}
-      <div ref={detailsRef} className="space-y-2">
+      <div ref={detailsRef} className="space-y-2 text-center sm:text-start">
         <h2 className="text-2xl font-bold tracking-wide">
           {firstname} {lastname}
         </h2>
