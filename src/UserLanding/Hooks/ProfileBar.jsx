@@ -99,7 +99,7 @@ function AnimatedProfileBar({ user }) {
         </h2>
         <p className="text-sm text-neutral-light">{email}</p>
         <button
-          onClick={() => navigate("newcar")}
+          onClick={() => navigate("/location")}
           className="px-4 py-2 mt-2 text-sm font-semibold rounded-full shadow-md bg-white text-primary-dark hover:bg-neutral-light hover:text-primary"
         >
           Car Register
