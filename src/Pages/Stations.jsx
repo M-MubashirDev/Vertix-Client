@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import UseStations from "../Location/hook/UseStations";
 import Map from "../Location/Map";
 import StationCardSec from "../Location/StationCardSec";
@@ -8,13 +8,13 @@ import { ButtonNavArrow } from "../UI/ButtonNav";
 import { gsap } from "gsap";
 
 function Stations() {
-  const [search, setSearch] = useState(""); // Store the search query
+  const [search, setSearch] = useState(""); // Store the submitted search query
   const [query, setQuery] = useState(""); // Store the typed query
   const [searched, setSearched] = useState(false); // Flag to indicate if search has been triggered
 
   function SearchQuery(e) {
     e.preventDefault();
-    setSearch(query); // Set the search query
+    setSearch(query); // Set the search query to the submitted value
     setQuery(""); // Clear the input after search
     setSearched(true); // Mark that search has been triggered
   }
@@ -22,12 +22,16 @@ function Stations() {
   // Fetching stations
   const { stationsData, pendingStations } = UseStations();
 
-  // Filter the stations data based on search query
-  const filteredData = stationsData?.filter((val) =>
-    Object.values(val).some((field) =>
-      field.toString().toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  // Memoize the filtered data so that its reference only changes when
+  // stationsData or search changes.
+  const filteredData = useMemo(() => {
+    if (!stationsData) return [];
+    return stationsData.filter((val) =>
+      Object.values(val).some((field) =>
+        field.toString().toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [stationsData, search]);
 
   useEffect(() => {
     if (searched && filteredData?.length > 0) {
@@ -38,15 +42,37 @@ function Stations() {
       );
     }
   }, [searched, filteredData]);
+
   // If data is still pending, show the spinner
   if (pendingStations) return <Spinner />;
 
-  // Use gsap to animate the filtered data when it appears
+  // Memoize the station cards so they are only recalculated when
+  // 'searched' or the filteredData reference changes.
+  const stationCards = useMemo(() => {
+    if (!searched) return null;
+    if (filteredData.length > 0) {
+      return (
+        <StationCardSec
+          stationsData={filteredData}
+          className="station-card" // Add a class for GSAP animation
+        />
+      );
+    }
+    return (
+      <div className="flex flex-col gap-5 mt-5">
+        <h1 className="text-xl text-gray-500 mt-4">
+          No stations found matching your search. Please try again with a
+          different query.
+        </h1>
+        <BackButton />
+      </div>
+    );
+  }, [searched, filteredData]);
 
   return (
     <div
       style={{ maxHeight: "calc(100vh - 83.2px)" }}
-      className="flex flex-col  max-w-[1440px] mx-auto w-[90%]"
+      className="flex flex-col max-w-[1440px] mx-auto w-[90%]"
     >
       {/* Left Section: Station Cards */}
       <div className="lg:flex-1 w-full max-w-[1440px] mx-auto min-h-screen flex flex-col pl-4 py-10 relative">
@@ -83,10 +109,10 @@ function Stations() {
               placeholder="Search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="sm:w-[30rem] max-w-fit px-4 py-2 text-lg rounded-full border  border-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-light"
+              className="lg:min-w-[40rem] md:min-w-[25rem] sm:min-w-[20rem] min-w-full px-4 py-2 text-lg rounded-full border border-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-light"
             />
             <div className="max-w-fit">
-              <ButtonNavArrow disable={!query}>Search Stations</ButtonNavArrow>
+              <ButtonNavArrow disable={!query}>Stations</ButtonNavArrow>
             </div>
           </form>
           {!searched && (
@@ -97,34 +123,13 @@ function Stations() {
             </div>
           )}
 
-          {/* If no search has been made, show a prompt message */}
-
-          {/* If search has been made, show results */}
-          {searched && (
-            <>
-              {/* If results are found after search */}
-              {filteredData?.length > 0 ? (
-                <StationCardSec
-                  stationsData={filteredData}
-                  className="station-card" // Add a class for GSAP animation
-                />
-              ) : (
-                // If no results found, show a friendly message
-                <div className="flex flex-col gap-5 mt-5">
-                  <h1 className="text-xl text-gray-500 mt-4">
-                    No stations found matching your search. Please try again
-                    with a different query.
-                  </h1>
-                  <BackButton />
-                </div>
-              )}
-            </>
-          )}
+          {/* Render memoized station cards */}
+          {searched && stationCards}
         </div>
       </div>
 
       {/* Right Section: Map */}
-      <div style={{ maxHeight: "calc(100vh - 83.2px)" }} className="lg:flex-1 ">
+      <div style={{ maxHeight: "calc(100vh - 83.2px)" }} className="lg:flex-1">
         <Map stationsData={filteredData} />
       </div>
     </div>
