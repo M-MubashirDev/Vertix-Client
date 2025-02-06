@@ -2,11 +2,14 @@ import { useNavigate } from "react-router-dom";
 import CustomForm from "../Components/Form";
 import BackButton from "../UI/BackButton";
 import { useRegistration } from "../UserRegistration/Hook/useRegitration";
+import { useEffect } from "react";
+import { getAuthData } from "../Hooks/useSecurity";
 
 function Register() {
   const navigate = useNavigate();
   const { mutateRegister, isPending: newAdminPend } = useRegistration();
-
+  const { user, token } = getAuthData();
+  console.log(user, "😁😁");
   function submitFunc(values) {
     if (!values) return;
 
@@ -27,6 +30,10 @@ function Register() {
     mutateRegister({ url: "register", data: formData });
   }
 
+  useEffect(() => {
+    if (!user && !token) return;
+    navigate("/cardetails/newcar");
+  }, [user, navigate, token]);
   return (
     <div className="mt-8 max-w-[1440px] mx-auto w-[90%]">
       <BackButton />
