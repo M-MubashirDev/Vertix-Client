@@ -99,7 +99,7 @@ function StationCardSec({ title, points, stationsData }) {
 
             {/* Latitude and Longitude for more detailed location */}
             {station.latitude && station.longitude && (
-              <p className="text-sm text-neutral-dark flex items-center gap-3">
+              <p className="text-sm flex-col  text-neutral-dark flex  gap-3">
                 <span className="font-medium">Coordinates:</span>
                 <span>
                   {station.latitude}, {station.longitude}
