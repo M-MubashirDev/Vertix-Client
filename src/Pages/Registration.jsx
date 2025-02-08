@@ -8,7 +8,7 @@ import { getAuthData } from "../Hooks/useSecurity";
 function Register() {
   const navigate = useNavigate();
   const { mutateRegister, isPending: newAdminPend } = useRegistration();
-  const { user, token } = getAuthData();
+  const { user, token } = getAuthData() || {};
   console.log(user, "😁😁");
   function submitFunc(values) {
     if (!values) return;
@@ -30,10 +30,10 @@ function Register() {
     mutateRegister({ url: "register", data: formData });
   }
 
-  useEffect(() => {
-    if (!user && !token) return;
-    navigate("/cardetails/newcar");
-  }, [user, navigate, token]);
+  // useEffect(() => {
+  //   if (!user && !token) return;
+  //   navigate("/cardetails/newcar");
+  // }, [user, navigate, token]);
   return (
     <div className="mt-8 max-w-[1440px] mx-auto w-[90%]">
       <BackButton />
@@ -111,15 +111,27 @@ function Register() {
             </button>
           </div>
         </CustomForm>
-        <h2 className="text-center mb-4 -mt-2">
-          Already have account?
-          <button
-            onClick={() => navigate("/login")}
-            className="text-blue-600 ml-2"
-          >
-            Login
-          </button>{" "}
-        </h2>
+        {!user && !token ? (
+          <h2 className="text-center mb-4 -mt-2">
+            Already have account?
+            <button
+              onClick={() => navigate("/login")}
+              className="text-blue-600 ml-2"
+            >
+              Login
+            </button>{" "}
+          </h2>
+        ) : (
+          <h2 className="text-center mb-4 -mt-2">
+            You are already logged in.
+            <button
+              onClick={() => navigate("/cardetails/newcar")}
+              className="text-blue-600 ml-2"
+            >
+              New Registration
+            </button>{" "}
+          </h2>
+        )}
       </div>
     </div>
   );
