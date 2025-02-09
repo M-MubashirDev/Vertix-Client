@@ -2,8 +2,11 @@
 import { useContectus } from "../Contectus/useContect";
 import Form from "../Components/Form";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   const { postContect, postPending } = useContectus();
   const HandleSubmit = (data) => {
     postContect({ data });
@@ -58,11 +61,20 @@ const Contact = () => {
                 required: "Message is required",
               }}
             />
-            <Form.ButtonSubmit>
-              <span className="flex items-center   justify-center gap-3">
-                Send Message <HiOutlinePaperAirplane />
-              </span>
-            </Form.ButtonSubmit>
+            <div className="flex gap-4  items-center">
+              <Form.ButtonSubmit isSubmitting={postPending}>
+                <span className="flex items-center   justify-center gap-3">
+                  Send Message <HiOutlinePaperAirplane />
+                </span>
+              </Form.ButtonSubmit>
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="w-full font-semibold  bg-gray-300 hover:text-gray-300 text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
           </Form>
         </div>
       </div>

@@ -14,7 +14,7 @@ const Navbar = () => {
   // Navigation links data
   const navLinks = [
     { label: "Home", to: "/" },
-    { label: "Contact Us", to: "/contactus" },
+    { label: "Contact Us", to: "/contectus" },
     ...(!token
       ? [{ label: "Log in", to: "/login" }]
       : [{ label: "Profile", to: "/cardetails" }]),

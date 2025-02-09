@@ -416,10 +416,63 @@ function ButtonSubmit({ children, isSubmitting }) {
   );
 }
 // Export Subcomponents
+function TextArea({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder,
+  rows,
+  cols,
+  validation,
+  ...props
+}) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div className="flex flex-col space-y-2 w-full">
+      {/* Label */}
+      <label
+        htmlFor={name}
+        className="text-sm text-gray-600 font-medium cursor-text"
+      >
+        {label}
+      </label>
+
+      {/* TextArea Input */}
+      <textarea
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        rows={rows || 4}
+        cols={cols || 50}
+        {...register(name, validation)}
+        className={`resize-none p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-dark bg-gray-100 text-gray-900 ${
+          errors[name] ? "border-red-500" : "border-gray-300"
+        } transition-colors`}
+        {...props}
+      />
+
+      {/* Error Message */}
+      {errors[name] && (
+        <p role="alert" className="text-sm text-red-500 mt-2">
+          {errors[name]?.message}
+        </p>
+      )}
+    </div>
+  );
+}
+
 Form.ButtonSubmit = ButtonSubmit;
 Form.ConfirmPasswordInput = ConfirmPasswordInput;
 Form.PasswordInput = PasswordInput;
 Form.Input = Input;
 Form.FileInput = FileInput;
+Form.TextArea = TextArea;
 
 export default Form;
