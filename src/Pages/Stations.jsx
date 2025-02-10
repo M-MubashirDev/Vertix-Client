@@ -88,7 +88,7 @@ function Stations() {
       );
     }
     return (
-      <div className="flex flex-col gap-5 mt-5">
+      <div className="flex flex-col s gap-5 mt-5">
         <h1 className="text-xl text-gray-500 mt-4">
           No stations found matching your search. Please try again with a
           different query.
