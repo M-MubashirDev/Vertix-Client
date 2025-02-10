@@ -18,13 +18,16 @@ function ButtonNav({ children, to }) {
   );
 }
 
-export function ButtonNavArrow({ children, to, disable }) {
+export function ButtonNavArrow({ children, to, disable, func }) {
   const navigate = useNavigate();
-
+  function off() {
+    navigate(to);
+    if (func) func();
+  }
   return (
     <button
       disabled={disable}
-      onClick={() => navigate(to)}
+      onClick={() => off()}
       type="submit"
       className={`flex  text-gray-50 ${
         disable ? "cursor-not-allowed" : ""
