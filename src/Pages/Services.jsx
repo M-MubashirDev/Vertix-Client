@@ -34,7 +34,7 @@ function Services() {
               is it.&quot;
             </p>
           </div>
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap s gap-6">
             {servicesData && servicesData.length > 0 ? (
               servicesData.map((service) => (
                 <CarWashServicesCard key={service._id} service={service} />
