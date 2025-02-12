@@ -244,7 +244,7 @@ function Home() {
       scrollTrigger: {
         trigger: page.current,
         scroller: "body",
-        start: "top -12%", // Adjust the start position
+        start: "top 0%", // Adjust the start position
         end: "+=2500", // Increase the end value to add a delay
         scrub: 2,
         pin: true,
@@ -252,13 +252,14 @@ function Home() {
         onEnterBack: () => {
           // Add a delay before allowing vertical scroll
           gsap.delayedCall(4, () => {
-            // Allow vertical scroll after 1 second delay
+            // Allow vertical scroll after 4 seconds delay
             ScrollTrigger.refresh(); // Refresh ScrollTrigger to update calculations
           });
         },
       },
     });
   });
+
   // Background video logic
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -311,7 +312,7 @@ function Home() {
 
   return (
     <>
-      <section className="min-h-screen ">
+      <section className="min-h-screen">
         <div className="relative h-screen w-full bg-black overflow-hidden">
           {/* Navbar */}
           <div ref={navbarRef} className="relative z-10">
@@ -370,40 +371,36 @@ function Home() {
       </section>
 
       {/* Horizontal Scroll Section */}
-      <section ref={page} className=" ">
-        <div ref={page2H2} className="flex  w-[300vw] h-screen">
-          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
-            <div className="">
-              <div>
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
-                  Are You Busy
-                </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
-                  Life can get busy, but we make it easier for you. Don’t worry
-                  about your car’s cleanliness — let us handle it while you
-                  focus on what matters. Trust Vertix to keep your car spotless,
-                  so you can enjoy more of life without the hassle.
-                </p>
-              </div>
-              <img src="carwashs.png" alt="" />
+      <section ref={page} className="">
+        <div ref={page2H2} className="flex w-[300vw] min-h-screen ">
+          <div className="h-screen bg-white grid text-center md:text-start gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
+            <div className="flex flex-col items-center">
+              <h1 className="lg:text-5xl md:text-4xl text-3xl  py-6 font-semibold">
+                Are You Busy
+              </h1>
+              <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
+                Life can get busy, but we make it easier for you. Don’t worry
+                about your car’s cleanliness — let us handle it while you focus
+                on what matters. Trust Vertix to keep your car spotless, so you
+                can enjoy more of life without the hassle.
+              </p>
+              <img
+                src="carwashs.png"
+                alt="Car Wash"
+                className="sm:max-w-[50%] max-w-[80%] py-3 md:py-10 md:max-w-full"
+              />
             </div>
-            <div>
+            <div className="flex flex-col-reverse md:block items-center">
+              <img
+                src="ways.png"
+                alt="Ways"
+                className="filter grayscale-[20%] hover:grayscale-0 transition-all sm:max-w-[50%] max-w-[80%] md:max-w-fit  duration-300"
+              />
               <div>
-                <img
-                  src="ways.png"
-                  alt=""
-                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
-                />
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
+                <h1 className="lg:text-5xl md:text-4xl text-3xl  md:py-10 py-3 font-semibold">
                   Make Your Life Easy
                 </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
                   Let us handle the cleaning, so you can enjoy a spotless car
                   without lifting a finger. Contact Vertix today, and let’s make
                   your life easier! Need a quick wash? We offer fast and
@@ -412,38 +409,34 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
-            <div className="">
-              <div>
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
-                  Are You Busy
-                </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
-                  Life can get busy, but we make it easier for you. Don’t worry
-                  about your car’s cleanliness — let us handle it while you
-                  focus on what matters. Trust Vertix to keep your car spotless,
-                  so you can enjoy more of life without the hassle.
-                </p>
-              </div>
-              <img src="carwashs.png" alt="" />
+          <div className="h-screen bg-white grid text-center md:text-start gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
+            <div className="flex flex-col items-center">
+              <h1 className="lg:text-5xl md:text-4xl text-3xl  py-6 font-semibold">
+                Are You Busy
+              </h1>
+              <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
+                Life can get busy, but we make it easier for you. Don’t worry
+                about your car’s cleanliness — let us handle it while you focus
+                on what matters. Trust Vertix to keep your car spotless, so you
+                can enjoy more of life without the hassle.
+              </p>
+              <img
+                src="carwashs.png"
+                alt="Car Wash"
+                className="sm:max-w-[50%] max-w-[80%] py-3 md:py-10 md:max-w-full"
+              />
             </div>
-            <div>
+            <div className="flex flex-col-reverse md:block items-center">
+              <img
+                src="ways.png"
+                alt="Ways"
+                className="filter grayscale-[20%] hover:grayscale-0 transition-all sm:max-w-[50%] max-w-[80%] md:max-w-fit  duration-300"
+              />
               <div>
-                <img
-                  src="ways.png"
-                  alt=""
-                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
-                />
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
+                <h1 className="lg:text-5xl md:text-4xl text-3xl  md:py-10 py-3 font-semibold">
                   Make Your Life Easy
                 </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
                   Let us handle the cleaning, so you can enjoy a spotless car
                   without lifting a finger. Contact Vertix today, and let’s make
                   your life easier! Need a quick wash? We offer fast and
@@ -452,38 +445,34 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
-            <div className="">
-              <div>
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
-                  Are You Busy
-                </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
-                  Life can get busy, but we make it easier for you. Don’t worry
-                  about your car’s cleanliness — let us handle it while you
-                  focus on what matters. Trust Vertix to keep your car spotless,
-                  so you can enjoy more of life without the hassle.
-                </p>
-              </div>
-              <img src="carwashs.png" alt="" />
+          <div className="h-screen bg-white grid text-center md:text-start gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
+            <div className="flex flex-col items-center">
+              <h1 className="lg:text-5xl md:text-4xl text-3xl  py-6 font-semibold">
+                Are You Busy
+              </h1>
+              <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
+                Life can get busy, but we make it easier for you. Don’t worry
+                about your car’s cleanliness — let us handle it while you focus
+                on what matters. Trust Vertix to keep your car spotless, so you
+                can enjoy more of life without the hassle.
+              </p>
+              <img
+                src="carwashs.png"
+                alt="Car Wash"
+                className="sm:max-w-[50%] max-w-[80%] py-3 md:py-10 md:max-w-full"
+              />
             </div>
-            <div>
+            <div className="flex flex-col-reverse md:block items-center">
+              <img
+                src="ways.png"
+                alt="Ways"
+                className="filter grayscale-[20%] hover:grayscale-0 transition-all sm:max-w-[50%] max-w-[80%] md:max-w-fit  duration-300"
+              />
               <div>
-                <img
-                  src="ways.png"
-                  alt=""
-                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
-                />
-                <h1
-                  className="text-5xl
-                py-6 font-semibold"
-                >
+                <h1 className="lg:text-5xl md:text-4xl text-3xl  md:py-10 py-3 font-semibold">
                   Make Your Life Easy
                 </h1>
-                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
                   Let us handle the cleaning, so you can enjoy a spotless car
                   without lifting a finger. Contact Vertix today, and let’s make
                   your life easier! Need a quick wash? We offer fast and
