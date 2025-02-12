@@ -218,7 +218,7 @@ const Testimonials = () => {
       </div>
 
       {/* Z-Pattern Additional Content */}
-      <div className="justify-self-end mx-auto mt-16 text-center items-center flex flex-col gap-8">
+      <div className="justify-self-end  mx-auto mt-16 text-center items-center flex flex-col gap-8 ">
         <FeaturesSection />
       </div>
     </section>

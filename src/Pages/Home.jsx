@@ -462,6 +462,7 @@ function Home() {
       </section>
 
       {/* Footer Section */}
+
       <section>
         <FooterDetails />
       </section>
