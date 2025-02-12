@@ -50,3 +50,41 @@ function FooterDetails() {
 }
 
 export default FooterDetails;
+{
+  /* <div className="h-screen bg-white grid  text-center md:text-start md:gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
+<div className="flex flex-col items-center md:items-start">
+  <h1 className="lg:text-5xl md:text-4xl text-3xl text-primary-light py-6 font-semibold">
+    Are You Busy
+  </h1>
+  <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-7">
+    Life can get busy, but we make it easier for you. Don’t worry
+    about your car’s cleanliness — let us handle it while you focus
+    on what matters. Trust Vertix to keep your car spotless, so you
+    can enjoy more of life without the hassle.
+  </p>
+  <img
+    src="carwashs.png"
+    alt="Car Wash"
+    className="sm:max-w-[50%] max-w-[80%] py-3 md:py-10 md:max-w-full"
+  />
+</div>
+<div className="flex flex-col-reverse md:block items-center">
+  <img
+    src="ways.png"
+    alt="Ways"
+    className="filter grayscale-[20%] hover:grayscale-0 transition-all sm:max-w-[50%] max-w-[80%] md:max-w-fit  duration-300"
+  />
+  <div>
+    <h1 className="lg:text-5xl md:text-4xl text-3xl text-primary-light md:py-10 py-3 font-semibold">
+      Make Your Life Easy
+    </h1>
+    <p className="text-[16px] lg:text-xl line-clamp-6 sm:text-lg text-gray-500 max-w-[90%] lg:max-w-[50%] mb-2">
+      Let us handle the cleaning, so you can enjoy a spotless car
+      without lifting a finger. Contact Vertix today, and let’s make
+      your life easier! Need a quick wash? We offer fast and
+      efficient services to keep your car looking great in no time!
+    </p>
+  </div>
+</div>
+</div> */
+}
