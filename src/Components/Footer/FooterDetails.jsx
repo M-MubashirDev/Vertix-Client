@@ -1,7 +1,7 @@
 import FooterText from "./FooterText";
 function FooterDetails() {
   return (
-    <div className="grid   lg:grid-cols-[16%_1fr] min-w-full ">
+    <div className="grid mt-20   lg:grid-cols-[16%_1fr] min-w-full ">
       <img
         src="logo2.png"
         alt="logo"
