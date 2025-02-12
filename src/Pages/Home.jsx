@@ -251,7 +251,7 @@ function Home() {
         markers: true, // Shows markers for debugging
         onEnterBack: () => {
           // Add a delay before allowing vertical scroll
-          gsap.delayedCall(4, () => {
+          gsap.delayedCall(1, () => {
             // Allow vertical scroll after 4 seconds delay
             ScrollTrigger.refresh(); // Refresh ScrollTrigger to update calculations
           });
@@ -371,7 +371,7 @@ function Home() {
       </section>
 
       {/* Horizontal Scroll Section */}
-      <section ref={page} className="overflow-x-auto">
+      <section ref={page} className="overflow-x-hidden">
         <div
           ref={page2H2}
           className="flex w-[300vw] min-h-screen  py-6 md:py-0"
