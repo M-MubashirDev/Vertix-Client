@@ -245,7 +245,7 @@ function Home() {
         trigger: page.current,
         scroller: "body",
         start: "top -2%", // Adjust the start position
-        end: "+=2500", // Increase the end value to add a delay
+        end: "+=2000", // Increase the end value to add a delay
         scrub: 2,
         pin: true,
         markers: true, // Shows markers for debugging
@@ -371,9 +371,12 @@ function Home() {
       </section>
 
       {/* Horizontal Scroll Section */}
-      <section ref={page} className="">
-        <div ref={page2H2} className="flex w-[300vw] min-h-screen ">
-          <div className="h-screen bg-white grid text-center md:text-start md:gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
+      <section ref={page} className="overflow-hidden">
+        <div
+          ref={page2H2}
+          className="flex w-[300vw] min-h-screen  py-6 md:py-0"
+        >
+          <div className="h-screen bg-white grid  text-center md:text-start md:gap-20  md:grid-cols-2  px-4 items-center justify-center max-w-[1440px] mx-auto w-[90%]">
             <div className="flex flex-col items-center">
               <h1 className="lg:text-5xl md:text-4xl text-3xl text-primary-light py-6 font-semibold">
                 Are You Busy
