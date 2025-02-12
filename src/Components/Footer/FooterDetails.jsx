@@ -7,7 +7,7 @@ function FooterDetails() {
         alt="logo"
         className="lg:min-w-full lg:min-h-full p-2 justify-self-center"
       />
-      <div className="grid grid-cols-2 gap-6 py-4 px-4 lg:pl-8 md:grid-cols-4 bg-primary-dark justify-center    place-content-center ">
+      <div className="grid grid-cols-2 gap-6 py-6 px-4 lg:pl-8 md:grid-cols-4 bg-primary-dark justify-center    place-content-center ">
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 py-4 px-4  justify-center place-content-center"> */}
         <FooterText>
           <FooterText.Heading>OPEN DAILY</FooterText.Heading>

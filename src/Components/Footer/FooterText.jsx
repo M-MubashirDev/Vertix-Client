@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 // Compound Component for Footer Section
 function FooterText({ children }) {
   return (
-    <ul className="flex flex-col max-w-fit   text-white text-start  ">
+    <ul className="flex flex-col max-w-fit gap-1  text-white text-start  ">
       {children}
     </ul>
   );

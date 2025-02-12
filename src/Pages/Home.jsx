@@ -244,15 +244,21 @@ function Home() {
       scrollTrigger: {
         trigger: page.current,
         scroller: "body",
-        start: "top top",
-        end: "+=2000", // Adjust based on the total width of the horizontal sections
+        start: "top -12%", // Adjust the start position
+        end: "+=2500", // Increase the end value to add a delay
         scrub: 2,
         pin: true,
         markers: true, // Shows markers for debugging
+        onEnterBack: () => {
+          // Add a delay before allowing vertical scroll
+          gsap.delayedCall(4, () => {
+            // Allow vertical scroll after 1 second delay
+            ScrollTrigger.refresh(); // Refresh ScrollTrigger to update calculations
+          });
+        },
       },
     });
   });
-
   // Background video logic
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -305,7 +311,7 @@ function Home() {
 
   return (
     <>
-      <section className="min-h-screen">
+      <section className="min-h-screen ">
         <div className="relative h-screen w-full bg-black overflow-hidden">
           {/* Navbar */}
           <div ref={navbarRef} className="relative z-10">
@@ -364,48 +370,127 @@ function Home() {
       </section>
 
       {/* Horizontal Scroll Section */}
-      <section ref={page} className="">
-        <div ref={page2H2} className="flex w-[300vw] h-[70vh]">
-          <div className=" h-[70vh] flex items-center justify-center max-w-[1440px] mx-auto w-[90%]">
-            <div>
-              <h1
-                className="text-4xl
-              py-6"
-              >
-                Make Your Life Better
-              </h1>
-              <p className="text-xl">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-                maxime molestias magnam aliquam modi perspiciatis nisi nulla
-                consequatur molestiae, illum adipisci voluptatibus omnis ratione
-                vel aperiam consequuntur accusantium! Qui, dolores!
-              </p>
+      <section ref={page} className=" ">
+        <div ref={page2H2} className="flex  w-[300vw] h-screen">
+          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
+            <div className="">
+              <div>
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Are You Busy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Life can get busy, but we make it easier for you. Don’t worry
+                  about your car’s cleanliness — let us handle it while you
+                  focus on what matters. Trust Vertix to keep your car spotless,
+                  so you can enjoy more of life without the hassle.
+                </p>
+              </div>
+              <img src="carwashs.png" alt="" />
             </div>
-            <img src="ways.png" alt="" />
+            <div>
+              <div>
+                <img
+                  src="ways.png"
+                  alt=""
+                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
+                />
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Make Your Life Easy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Let us handle the cleaning, so you can enjoy a spotless car
+                  without lifting a finger. Contact Vertix today, and let’s make
+                  your life easier! Need a quick wash? We offer fast and
+                  efficient services to keep your car looking great in no time!
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="h-[70vh] h-screen flex items-center justify-center bg-red-200">
-            <div>
-              <h1>the second step</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-                maxime molestias magnam aliquam modi perspiciatis nisi nulla
-                consequatur molestiae, illum adipisci voluptatibus omnis ratione
-                vel aperiam consequuntur accusantium! Qui, dolores!
-              </p>
+          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
+            <div className="">
+              <div>
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Are You Busy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Life can get busy, but we make it easier for you. Don’t worry
+                  about your car’s cleanliness — let us handle it while you
+                  focus on what matters. Trust Vertix to keep your car spotless,
+                  so you can enjoy more of life without the hassle.
+                </p>
+              </div>
+              <img src="carwashs.png" alt="" />
             </div>
-            <img src="logo.png" alt="" />
+            <div>
+              <div>
+                <img
+                  src="ways.png"
+                  alt=""
+                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
+                />
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Make Your Life Easy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Let us handle the cleaning, so you can enjoy a spotless car
+                  without lifting a finger. Contact Vertix today, and let’s make
+                  your life easier! Need a quick wash? We offer fast and
+                  efficient services to keep your car looking great in no time!
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="w-screen h-screen flex items-center justify-center bg-blue-200">
-            <div>
-              <h1>the third step</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-                maxime molestias magnam aliquam modi perspiciatis nisi nulla
-                consequatur molestiae, illum adipisci voluptatibus omnis ratione
-                vel aperiam consequuntur accusantium! Qui, dolores!
-              </p>
+          <div className=" h-screen bg-white grid grid-cols-2 items-center justify-center  max-w-[1440px] mx-auto w-[90%]">
+            <div className="">
+              <div>
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Are You Busy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Life can get busy, but we make it easier for you. Don’t worry
+                  about your car’s cleanliness — let us handle it while you
+                  focus on what matters. Trust Vertix to keep your car spotless,
+                  so you can enjoy more of life without the hassle.
+                </p>
+              </div>
+              <img src="carwashs.png" alt="" />
             </div>
-            <img src="logo.png" alt="" />
+            <div>
+              <div>
+                <img
+                  src="ways.png"
+                  alt=""
+                  className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-300"
+                />
+                <h1
+                  className="text-5xl
+                py-6 font-semibold"
+                >
+                  Make Your Life Easy
+                </h1>
+                <p className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed">
+                  Let us handle the cleaning, so you can enjoy a spotless car
+                  without lifting a finger. Contact Vertix today, and let’s make
+                  your life easier! Need a quick wash? We offer fast and
+                  efficient services to keep your car looking great in no time!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
