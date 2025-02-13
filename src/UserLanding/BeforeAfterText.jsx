@@ -26,7 +26,7 @@ const BeforeAfterText = () => {
             start: "top 120%",
             end: "top 30%",
             scrub: true,
-            markers: true, // Remove or set to false to hide the debug markers
+            markers: false, // Remove or set to false to hide the debug markers
           },
         }
       );

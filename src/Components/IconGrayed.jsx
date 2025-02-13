@@ -35,7 +35,7 @@ const FeatureIcon = ({ icon, title, description }) => {
           start: "top 120%",
           end: "top 30%",
           scrub: true,
-          markers: true, // Remove if you don't want to see markers
+          markers: false, // Remove if you don't want to see markers
         },
       }
     );
@@ -56,7 +56,7 @@ const FeatureIcon = ({ icon, title, description }) => {
           start: "top 120%",
           end: "top 30%",
           scrub: true,
-          markers: true, // Remove if you don't want to see markers
+          markers: false, // Remove if you don't want to see markers
         },
       }
     );
@@ -115,7 +115,7 @@ const FeaturesSection = () => {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          markers: true, // Remove if you don't want to see markers
+          markers: false, // Remove if you don't want to see markers
         },
       }
     );
@@ -142,7 +142,7 @@ const FeaturesSection = () => {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          markers: true, // Remove if you don't want to see markers
+          markers: false, // Remove if you don't want to see markers
         },
       }
     );

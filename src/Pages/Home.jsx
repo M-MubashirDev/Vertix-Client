@@ -147,10 +147,12 @@ function Home() {
           // height: "px",
         }}
         // className="bg-[#eff0f1] min-h-fit w-full py-16"
-        className="  flex min-w-full justify-center h-full  bg-primary items-center flex-col g-primary-dark"
+        className="   bg-primary   "
       >
-        <BeforeAfterSlider />
-        <BeforeAfterText />
+        <div className="flex  flex-col items-center justify-center max-w-[1440px]  mx-auto w-[90%] h-full ">
+          <BeforeAfterSlider />
+          <BeforeAfterText />
+        </div>
       </section>
       {/* Footer Section */}
 
