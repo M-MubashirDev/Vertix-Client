@@ -1,11 +1,5 @@
 import { useEffect, useRef } from "react";
-import {
-  FaHandsWash,
-  FaHeart,
-  FaLaptopCode,
-  FaBuilding,
-  FaNetworkWired,
-} from "react-icons/fa";
+import { FaPhoneVolume, FaCarSide } from "react-icons/fa";
 import { RiCarWashingFill } from "react-icons/ri";
 import ExpandableButton from "../UI/ExpandableButton";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* -------------------------------------
+   Reusable FeatureIcon Child Component
+----------------------------------------*/
 const FeatureIcon = ({ icon, title, description }) => {
   const iconRef = useRef(null);
   const textRef = useRef(null);
@@ -38,7 +35,7 @@ const FeatureIcon = ({ icon, title, description }) => {
           start: "top 120%",
           end: "top 30%",
           scrub: true,
-          markers: true,
+          markers: true, // Remove if you don't want to see markers
         },
       }
     );
@@ -59,7 +56,7 @@ const FeatureIcon = ({ icon, title, description }) => {
           start: "top 120%",
           end: "top 30%",
           scrub: true,
-          markers: true,
+          markers: true, // Remove if you don't want to see markers
         },
       }
     );
@@ -86,6 +83,9 @@ const FeatureIcon = ({ icon, title, description }) => {
   );
 };
 
+/* ----------------------------
+   Main FeaturesSection Component
+----------------------------- */
 const FeaturesSection = () => {
   const navigate = useNavigate();
   const headingRef = useRef(null);
@@ -96,10 +96,7 @@ const FeaturesSection = () => {
     // Fade in and bounce animation for the heading
     gsap.fromTo(
       headingRef.current,
-      {
-        opacity: 0,
-        y: 20,
-      },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
@@ -118,7 +115,7 @@ const FeaturesSection = () => {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          markers: true,
+          markers: true, // Remove if you don't want to see markers
         },
       }
     );
@@ -126,10 +123,7 @@ const FeaturesSection = () => {
     // Fade in and bounce animation for the paragraph
     gsap.fromTo(
       paragraphRef.current,
-      {
-        opacity: 0,
-        y: 20,
-      },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
@@ -148,37 +142,29 @@ const FeaturesSection = () => {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          markers: true,
+          markers: true, // Remove if you don't want to see markers
         },
       }
     );
   }, []);
 
+  // Updated features array (three-step process)
   const features = [
     {
-      icon: <FaHandsWash size={30} className="text-primary-dark" />,
-      title: "Cleanliness",
-      description: "Ensuring a hygienic and clean experience for all.",
+      icon: <FaPhoneVolume size={30} className="text-primary-dark" />,
+      title: "Book Your Station",
+      description: "Give us a call or use our app to schedule your car wash.",
     },
     {
-      icon: <FaHeart size={30} className="text-primary-dark" />,
-      title: "Care",
-      description: "Focused on customer care and satisfaction.",
+      icon: <RiCarWashingFill size={30} className="text-primary-dark" />,
+      title: "Car in Service",
+      description:
+        "Our experts thoroughly wash your car using premium products.",
     },
     {
-      icon: <FaLaptopCode size={30} className="text-primary-dark" />,
-      title: "New Technology",
-      description: "Leveraging modern tech for seamless services.",
-    },
-    {
-      icon: <FaBuilding size={30} className="text-primary-dark" />,
-      title: "Best Facility",
-      description: "Top-class facilities to meet your expectations.",
-    },
-    {
-      icon: <FaNetworkWired size={30} className="text-primary-dark" />,
-      title: "Large Network",
-      description: "A wide-reaching network for convenience.",
+      icon: <FaCarSide size={30} className="text-primary-dark" />,
+      title: "Clean & Shiny",
+      description: "Drive away in a spotless, gleaming vehicle you'll love.",
     },
   ];
 
@@ -189,7 +175,6 @@ const FeaturesSection = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        // height: "px",
       }}
       className="bg-[#eff0f1] min-h-fit w-full py-16"
     >
@@ -200,21 +185,19 @@ const FeaturesSection = () => {
             ref={headingRef}
             className="text-primary-dark text-2xl sm:text-3xl font-bold mb-4"
           >
-            Why Choose Us?
+            Our Car Wash Process
           </h3>
           <p
             ref={paragraphRef}
             className="text-neutral-dark text-lg lg:max-w-[70%] sm:text-xl leading-relaxed"
           >
-            At our company, we deliver exceptional results by focusing on
-            quality, innovation, and customer satisfaction. Our innovative
-            approach ensures seamless experiences that leave a lasting
-            impression. We strive to exceed expectations with unparalleled
-            attention to detail, setting new standards in excellence and
-            reliability.
+            Experience a quick and convenient wash process from start to finish.
+            Book your slot in seconds, watch our team work its magic, and drive
+            away in a spotless car—it's that simple.
           </p>
         </div>
-        {/* Features */}
+
+        {/* Features (Three Steps) */}
         <div className="flex flex-wrap justify-center gap-8">
           {features.map((feature, index) => (
             <FeatureIcon
@@ -225,6 +208,8 @@ const FeaturesSection = () => {
             />
           ))}
         </div>
+
+        {/* CTA Button */}
         <div
           onClick={() => navigate("location")}
           className="w-full flex justify-end sm:opacity-100 opacity-0"

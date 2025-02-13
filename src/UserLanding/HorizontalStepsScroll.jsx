@@ -1,141 +1,54 @@
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+const BeforeAfterSlider = () => {
+  const [sliderPosition, setSliderPosition] = useState(50);
 
-function CarWashAnimation() {
-  const carRef = useRef(null);
-  const bubblesRef = useRef([]);
-  const scrubBrushRef = useRef(null);
-  const waterSplashRef = useRef(null);
-  const airBlowerRef = useRef(null);
-  const sparklesRef = useRef([]);
-
-  useEffect(() => {
-    // Step 1: Car Arrival
-    gsap.from(carRef.current, {
-      x: "-100%",
-      duration: 2,
-      ease: "power2.out",
-    });
-
-    // Step 2: Soap Application
-    bubblesRef.current.forEach((bubble, i) => {
-      gsap.to(bubble, {
-        opacity: 1,
-        y: -100,
-        scale: 1.5,
-        duration: 1,
-        delay: i * 0.2,
-        repeat: 1,
-        yoyo: true,
-        ease: "power2.inOut",
-      });
-    });
-
-    // Step 3: Scrubbing
-    gsap.from(scrubBrushRef.current, {
-      x: "-100%",
-      duration: 2,
-      ease: "power2.out",
-    });
-
-    // Step 4: Rinsing
-    gsap.to(waterSplashRef.current, {
-      opacity: 1,
-      scale: 1.5,
-      duration: 2,
-      ease: "power2.out",
-    });
-
-    // Step 5: Drying
-    gsap.from(airBlowerRef.current, {
-      x: "-100%",
-      duration: 2,
-      ease: "power2.out",
-    });
-    sparklesRef.current.forEach((sparkle, i) => {
-      gsap.to(sparkle, {
-        opacity: 1,
-        y: -50,
-        scale: 1.5,
-        duration: 1,
-        delay: i * 0.2,
-        repeat: 1,
-        yoyo: true,
-        ease: "power2.inOut",
-      });
-    });
-
-    // Step 6: Car Departure
-    gsap.to(carRef.current, {
-      x: "100%",
-      duration: 2,
-      ease: "power2.in",
-    });
-  }, []);
+  const handleSliderChange = (e) => {
+    setSliderPosition(e.target.value);
+  };
 
   return (
-    <div className="car-wash-container">
-      {/* Step 1: Car Arrival */}
-      <div className="step step-1">
-        <img ref={carRef} src="car.png" alt="Car" className="car" />
-      </div>
-
-      {/* Step 2: Soap Application */}
-      <div className="step step-2">
-        <div className="bubbles">
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => (bubblesRef.current[i] = el)}
-              className="bubble"
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Step 3: Scrubbing */}
-      <div className="step step-3">
+    <div className="relative w-full max-w-2xl   -translate-y-[5%]  overflow-hidden rounded-lg shadow-lg">
+      {/* Before Image (Dirty Car) */}
+      <div
+        className="absolute top-0 left-0 w-full h-full overflow-hidden"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+      >
         <img
-          ref={scrubBrushRef}
-          src="scrub-brush.png"
-          alt="Scrub Brush"
-          className="scrub-brush"
+          src="dirty.webp"
+          alt="Dirty Car"
+          className="w-full h-full object-cover"
         />
       </div>
 
-      {/* Step 4: Rinsing */}
-      <div className="step step-4">
-        <div ref={waterSplashRef} className="water-splash" />
-      </div>
-
-      {/* Step 5: Drying */}
-      <div className="step step-5">
+      {/* After Image (Clean Car) */}
+      <div className="w-full h-full">
         <img
-          ref={airBlowerRef}
-          src="air-blower.png"
-          alt="Air Blower"
-          className="air-blower"
+          src="clean.webp"
+          alt="Clean Car"
+          className="w-full h-full object-cover"
         />
-        <div className="sparkles">
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => (sparklesRef.current[i] = el)}
-              className="sparkle"
-            />
-          ))}
-        </div>
       </div>
 
-      {/* Step 6: Car Departure */}
-      <div className="step step-6">
-        <img ref={carRef} src="car.png" alt="Car" className="car" />
+      {/* Slider Input */}
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={sliderPosition}
+        onChange={handleSliderChange}
+        className="absolute top-0 left-0 w-full h-full opacity-0 cursor-ew-resize z-10"
+      />
+
+      {/* Slider Line and Handle */}
+      <div
+        className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-5"
+        style={{ left: `${sliderPosition}%` }}
+      >
+        <div className="absolute -top-2 -left-2 w-6 h-6 bg-white rounded-full shadow-md"></div>
       </div>
     </div>
   );
-}
+};
 
-export default CarWashAnimation;
+export default BeforeAfterSlider;
