@@ -1,190 +1,141 @@
-// import { useRef, useEffect, useState } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// gsap.registerPlugin(ScrollTrigger);
-
-// function Horizontal() {
-//   const [currentIndex, setCurrentIndex] = useState(0); // Track current section
-//   const sectionsRef = useRef([]); // Store references to each section
-
-//   // Set up gsap scrollTrigger animation
-//   useEffect(() => {
-//     // Set initial scroll position
-//     gsap.to(sectionsRef.current, {
-//       scrollTrigger: {
-//         trigger: sectionsRef.current[0],
-//         start: "top top", // Trigger when the first section reaches the top
-//         end: `+=${sectionsRef.current.length * window.innerWidth}`, // Scroll through all sections
-//         pin: true, // Keep the first section pinned
-//         scrub: 1, // Smooth scroll
-//         markers: true, // Optional, for debugging
-//         onUpdate: ({ progress }) => {
-//           // Calculate index based on scroll progress
-//           const newIndex = Math.floor(
-//             progress * (sectionsRef.current.length - 1)
-//           );
-//           setCurrentIndex(newIndex);
-//         },
-//       },
-//     });
-//   }, []);
-
-//   return (
-//     <div className="relative overflow-hidden">
-//       {/* Horizontal Scroll Wrapper */}
-//       <div className="flex w-[300vw]">
-//         {" "}
-//         {/* Adjust to cover 3 sections */}
-//         {/* First Section */}
-//         <div
-//           ref={(el) => (sectionsRef.current[0] = el)}
-//           className="flex-none w-[100vw] h-screen bg-yellow-400 flex items-center justify-center"
-//         >
-//           <div>
-//             <h1>The First Step</h1>
-//             <p>
-//               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-//               maxime molestias magnam aliquam modi perspiciatis nisi nulla
-//               consequatur molestiae, illum adipisci voluptatibus omnis ratione
-//               vel aperiam consequuntur accusantium! Qui, dolores!
-//             </p>
-//           </div>
-//         </div>
-//         {/* Second Section */}
-//         <div
-//           ref={(el) => (sectionsRef.current[1] = el)}
-//           className="flex-none w-[100vw] h-screen bg-red-400 flex items-center justify-center"
-//         >
-//           <div>
-//             <h1>The Second Step</h1>
-//             <p>
-//               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-//               maxime molestias magnam aliquam modi perspiciatis nisi nulla
-//               consequatur molestiae, illum adipisci voluptatibus omnis ratione
-//               vel aperiam consequuntur accusantium! Qui, dolores!
-//             </p>
-//           </div>
-//         </div>
-//         {/* Third Section */}
-//         <div
-//           ref={(el) => (sectionsRef.current[2] = el)}
-//           className="flex-none w-[100vw] h-screen bg-blue-400 flex items-center justify-center"
-//         >
-//           <div>
-//             <h1>The Third Step</h1>
-//             <p>
-//               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-//               maxime molestias magnam aliquam modi perspiciatis nisi nulla
-//               consequatur molestiae, illum adipisci voluptatibus omnis ratione
-//               vel aperiam consequuntur accusantium! Qui, dolores!
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Footer */}
-//       <div className="w-full h-[200px] bg-gray-200 flex items-center justify-center">
-//         <footer>
-//           <p>Footer Content</p>
-//         </footer>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Horizontal;
-import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
-function Horizontal() {
-  const [currentIndex, setCurrentIndex] = useState(0); // Track current section
-  const sectionsRef = useRef([]); // Store references to each section
+function CarWashAnimation() {
+  const carRef = useRef(null);
+  const bubblesRef = useRef([]);
+  const scrubBrushRef = useRef(null);
+  const waterSplashRef = useRef(null);
+  const airBlowerRef = useRef(null);
+  const sparklesRef = useRef([]);
 
-  // Set up gsap scrollTrigger animation
   useEffect(() => {
-    // Set initial scroll position
-    gsap.to(sectionsRef.current, {
-      scrollTrigger: {
-        trigger: sectionsRef.current[0],
-        start: "top top", // Trigger when the first section reaches the top
-        end: `+=${sectionsRef.current.length * window.innerWidth}`, // Scroll through all sections
-        pin: true, // Keep the first section pinned
-        scrub: 1, // Smooth scroll
-        markers: true, // Optional, for debugging
-        onUpdate: ({ progress }) => {
-          // Calculate index based on scroll progress
-          const newIndex = Math.floor(
-            progress * (sectionsRef.current.length - 1)
-          );
-          setCurrentIndex(newIndex);
-        },
-      },
+    // Step 1: Car Arrival
+    gsap.from(carRef.current, {
+      x: "-100%",
+      duration: 2,
+      ease: "power2.out",
+    });
+
+    // Step 2: Soap Application
+    bubblesRef.current.forEach((bubble, i) => {
+      gsap.to(bubble, {
+        opacity: 1,
+        y: -100,
+        scale: 1.5,
+        duration: 1,
+        delay: i * 0.2,
+        repeat: 1,
+        yoyo: true,
+        ease: "power2.inOut",
+      });
+    });
+
+    // Step 3: Scrubbing
+    gsap.from(scrubBrushRef.current, {
+      x: "-100%",
+      duration: 2,
+      ease: "power2.out",
+    });
+
+    // Step 4: Rinsing
+    gsap.to(waterSplashRef.current, {
+      opacity: 1,
+      scale: 1.5,
+      duration: 2,
+      ease: "power2.out",
+    });
+
+    // Step 5: Drying
+    gsap.from(airBlowerRef.current, {
+      x: "-100%",
+      duration: 2,
+      ease: "power2.out",
+    });
+    sparklesRef.current.forEach((sparkle, i) => {
+      gsap.to(sparkle, {
+        opacity: 1,
+        y: -50,
+        scale: 1.5,
+        duration: 1,
+        delay: i * 0.2,
+        repeat: 1,
+        yoyo: true,
+        ease: "power2.inOut",
+      });
+    });
+
+    // Step 6: Car Departure
+    gsap.to(carRef.current, {
+      x: "100%",
+      duration: 2,
+      ease: "power2.in",
     });
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      {/* Horizontal Scroll Wrapper */}
-      <div className="flex w-[300vw]">
-        {" "}
-        {/* Adjust to cover 3 sections */}
-        {/* First Section */}
-        <div
-          ref={(el) => (sectionsRef.current[0] = el)}
-          className="flex-none w-[100vw] h-screen bg-yellow-400 flex items-center justify-center"
-        >
-          <div>
-            <h1>The First Step</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-              maxime molestias magnam aliquam modi perspiciatis nisi nulla
-              consequatur molestiae, illum adipisci voluptatibus omnis ratione
-              vel aperiam consequuntur accusantium! Qui, dolores!
-            </p>
-          </div>
-        </div>
-        {/* Second Section */}
-        <div
-          ref={(el) => (sectionsRef.current[1] = el)}
-          className="flex-none w-[100vw] h-screen bg-red-400 flex items-center justify-center"
-        >
-          <div>
-            <h1>The Second Step</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-              maxime molestias magnam aliquam modi perspiciatis nisi nulla
-              consequatur molestiae, illum adipisci voluptatibus omnis ratione
-              vel aperiam consequuntur accusantium! Qui, dolores!
-            </p>
-          </div>
-        </div>
-        {/* Third Section */}
-        <div
-          ref={(el) => (sectionsRef.current[2] = el)}
-          className="flex-none w-[100vw] h-screen bg-blue-400 flex items-center justify-center"
-        >
-          <div>
-            <h1>The Third Step</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-              maxime molestias magnam aliquam modi perspiciatis nisi nulla
-              consequatur molestiae, illum adipisci voluptatibus omnis ratione
-              vel aperiam consequuntur accusantium! Qui, dolores!
-            </p>
-          </div>
+    <div className="car-wash-container">
+      {/* Step 1: Car Arrival */}
+      <div className="step step-1">
+        <img ref={carRef} src="car.png" alt="Car" className="car" />
+      </div>
+
+      {/* Step 2: Soap Application */}
+      <div className="step step-2">
+        <div className="bubbles">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              ref={(el) => (bubblesRef.current[i] = el)}
+              className="bubble"
+            />
+          ))}
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="w-full h-[200px] bg-gray-200 flex items-center justify-center">
-        <footer>
-          <p>Footer Content</p>
-        </footer>
+      {/* Step 3: Scrubbing */}
+      <div className="step step-3">
+        <img
+          ref={scrubBrushRef}
+          src="scrub-brush.png"
+          alt="Scrub Brush"
+          className="scrub-brush"
+        />
+      </div>
+
+      {/* Step 4: Rinsing */}
+      <div className="step step-4">
+        <div ref={waterSplashRef} className="water-splash" />
+      </div>
+
+      {/* Step 5: Drying */}
+      <div className="step step-5">
+        <img
+          ref={airBlowerRef}
+          src="air-blower.png"
+          alt="Air Blower"
+          className="air-blower"
+        />
+        <div className="sparkles">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              ref={(el) => (sparklesRef.current[i] = el)}
+              className="sparkle"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Step 6: Car Departure */}
+      <div className="step step-6">
+        <img ref={carRef} src="car.png" alt="Car" className="car" />
       </div>
     </div>
   );
 }
 
-export default Horizontal;
+export default CarWashAnimation;

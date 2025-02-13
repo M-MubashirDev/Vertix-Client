@@ -156,27 +156,27 @@ const FeaturesSection = () => {
 
   const features = [
     {
-      icon: <FaHandsWash size={30} className="text-gray-600" />,
+      icon: <FaHandsWash size={30} className="text-primary-dark" />,
       title: "Cleanliness",
       description: "Ensuring a hygienic and clean experience for all.",
     },
     {
-      icon: <FaHeart size={30} className="text-gray-600" />,
+      icon: <FaHeart size={30} className="text-primary-dark" />,
       title: "Care",
       description: "Focused on customer care and satisfaction.",
     },
     {
-      icon: <FaLaptopCode size={30} className="text-gray-600" />,
+      icon: <FaLaptopCode size={30} className="text-primary-dark" />,
       title: "New Technology",
       description: "Leveraging modern tech for seamless services.",
     },
     {
-      icon: <FaBuilding size={30} className="text-gray-600" />,
+      icon: <FaBuilding size={30} className="text-primary-dark" />,
       title: "Best Facility",
       description: "Top-class facilities to meet your expectations.",
     },
     {
-      icon: <FaNetworkWired size={30} className="text-gray-600" />,
+      icon: <FaNetworkWired size={30} className="text-primary-dark" />,
       title: "Large Network",
       description: "A wide-reaching network for convenience.",
     },
